@@ -32,7 +32,7 @@ const User = () => {
 
   return users ? (
     <LoginLayout>
-      <div className="flex flex-col gap-y-6 justify-center items-center mt-24 text-lg">
+      <div className="flex mb-64 flex-col gap-y-6 justify-center items-center mt-24 text-lg">
         <div>Welcome</div>
         <div>{userName}</div>
         <a href="/" className="bg-blue-500   text-white p-4 rounded-lg">
@@ -101,7 +101,7 @@ const User = () => {
                 >
                   Sing In
                 </button>
-                <h1 className="text-xl xxs:text-base">
+                <h1 className="text-xl xxs:text-base flex xxs:gap-x-2 gap-x-1">
                   Don't have an account?
                   <a className="text-[#3d7c7d] font-semibold" href="/user">
                     Create one now.

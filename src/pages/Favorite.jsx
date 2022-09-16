@@ -1,10 +1,22 @@
-import React from 'react'
+import React from "react";
 import Layout from "Layout/Layout";
+import { useState } from "react";
 
 const Favorite = () => {
-  return (
-    <Layout>Favorite</Layout>
-  )
-}
+  const card = localStorage.getItem("items");
 
-export default Favorite
+  const [item, setItem] = useState([card]);
+  console.log(item);
+
+  return (
+    <Layout>
+      <ul>
+        {item.map((item) => (
+          <li key={item._id}>{item}</li>
+        ))}
+      </ul>
+    </Layout>
+  );
+};
+
+export default Favorite;

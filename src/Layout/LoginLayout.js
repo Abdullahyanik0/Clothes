@@ -6,10 +6,8 @@ const LoginLayout = ({ children }) => {
   return (
     <>
       <LoginHeader />
-      {children}
-      <div className="bottom-0 left-0 absolute w-full">
-        <Footer />
-      </div>
+      <div className="mb-36">{children}</div>
+      <Footer />
     </>
   );
 };

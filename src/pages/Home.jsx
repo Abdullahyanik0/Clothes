@@ -6,6 +6,7 @@ import Loading from "components/Loading";
 import HeroSlider from "components/HeroSlider";
 import Box from "components/Box";
 
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,12 +23,14 @@ const Home = () => {
       </div>
       <HeroSlider />
 
+      
+
       <div className="flex justify-center">
         <h1 className="p-4  hover:text-white hover:bg-slate-400  border-2 border-slate-400 mt-4 rounded font-bold text-sm">
           EXPLORE THE COLLECTION
         </h1>
       </div>
-      <div className="flex gap-x-6 xxs:block mt-24">
+      <div className="flex gap-x-6 xxs:block mt-24 xxs:mt-12">
         <Box
           imgUrl="https://www.burton.com/dw/image/v2/AADF_PRD/on/demandware.static/-/Library-Sites-shared-content/default/dwd35fd0df/W23/W23-Category-Support/22F-k-hardgoods-2upsquare-BG-2x.jpeg"
           title="Get 'em Ready to Rip"
@@ -66,7 +69,7 @@ const Home = () => {
           and sport.
         </p>
       </div>
-      <div className="flex gap-x-6 xxs:block mt-24">
+      <div className="flex gap-x-6 xxs:block mt-24 xxs:mt-12 ">
         <Box
           imgUrl="https://www.burton.com/dw/image/v2/AADF_PRD/on/demandware.static/-/Library-Sites-shared-content/default/dw857d46f2/W22/W22-People-Planet-Sport/People-3Up-Square-BG.jpg"
           title="Get 'em Ready to Rip"

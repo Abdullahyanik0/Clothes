@@ -6,7 +6,7 @@ import { Navigation, Autoplay } from "swiper";
 
 const Slider = () => {
   return (
-    <div className=" mb-12  ">
+    <div className=" mb-12 xxs:mt-12  ">
       <Swiper
         className="max-h-[655px] "
         spaceBetween={50}
@@ -18,19 +18,19 @@ const Slider = () => {
           disableOnInteraction: false,
         }}
       >
-        <SwiperSlide>
+        <SwiperSlide className="min-h-[220px] max-h-[550px] object-cover w-full ">
           <div>
             <img
-              src="https://www.burton.com/dw/image/v2/AADF_PRD/on/demandware.static/-/Library-Sites-shared-content/default/dw1836ac92/W23/W23-Blogs/LineArt-FullHeroPromo-2x.jpg?sw=3000&sfrm=jpg&q=80"
+              src="https://www.burton.com/dw/image/v2/AADF_PRD/on/demandware.static/-/Library-Sites-shared-content/default/dw387b90dd/W23/W23-Kids-Outerwear/22FW-TD-OnePiece-02-BG-2x-1.jpg?sw=1600&sfrm=jpg&q=80"
               alt=""
             />
           </div>
         </SwiperSlide>
-
         <SwiperSlide>
           <div>
             <img
-              src="https://www.burton.com/dw/image/v2/AADF_PRD/on/demandware.static/-/Library-Sites-shared-content/default/dw387b90dd/W23/W23-Kids-Outerwear/22FW-TD-OnePiece-02-BG-2x-1.jpg?sw=1600&sfrm=jpg&q=80"
+              className="min-h-[220px] max-h-[550px] object-cover  w-full"
+              src="https://www.burton.com/dw/image/v2/AADF_PRD/on/demandware.static/-/Library-Sites-shared-content/default/dw1836ac92/W23/W23-Blogs/LineArt-FullHeroPromo-2x.jpg?sw=3000&sfrm=jpg&q=80"
               alt=""
             />
           </div>

@@ -32,6 +32,8 @@ const CategoryPage = () => {
       });
   };
 
+  
+
   useEffect(() => {
     fetchData();
   }, [params]);

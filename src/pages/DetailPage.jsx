@@ -3,13 +3,19 @@ import Layout from "Layout/Layout";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import Loading from "components/Loading";
+import { useSelector, useDispatch } from "react-redux";
+import { addCard } from "redux/CardSlice";
+import Size from "../components/Size";
 
 const DetailPage = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [items, setItems] = useState();
+  const Card = useSelector((state) => state.card.items);
+  const dispatch = useDispatch();
+  console.log(Card);
+
   let params = useParams();
   const detail = params;
 
@@ -22,8 +28,8 @@ const DetailPage = () => {
       .get(url)
       .then(function (response) {
         setData(response.data.product[0]);
+
         setLoading(false);
-        console.log(data);
       })
       .catch(function (error) {
         console.log(error);
@@ -33,14 +39,8 @@ const DetailPage = () => {
     fetchData();
   }, [params]);
 
-  const addFavorite = () => {
-    const item = data._id;
-    setItems((prevState) => ({ ...prevState, item }));
-    localStorage.setItem("item", items);
-  };
-
   return isLoading ? (
-    <Layout>c
+    <Layout>
       <Loading />
     </Layout>
   ) : (
@@ -55,7 +55,8 @@ const DetailPage = () => {
           <p className="py-1 font-bold ">$ {data?.price}</p>
 
           <p>4 interest-free payments of $42.48 with Klarna. Learn More</p>
-          <div className="flex gap-x-2 xxs:gap-1  ">
+          <Size />
+          {/* <div className="flex gap-x-2 xxs:gap-1  ">
             <button className="rounded-full border-2 border-black hover:scale-105 w-10 h-10 text-xs">
               Xs
             </button>
@@ -71,14 +72,18 @@ const DetailPage = () => {
             <button className="rounded-full border-2 border-black hover:scale-105 w-10 h-10 text-xs">
               XL
             </button>
-          </div>
+          </div> */}
           <div className="flex relative items-center">
             <button className="bg-black text-white w-full h-12 rounded">
-              Select a Size
+              Add to cart
             </button>
             <div className="border-2 border-blue-400 ml-4 h-12 items-center flex w-12 justify-center">
-              <button onClick={addFavorite}>
-                <AiFillHeart className="text-blue-800 " size={24} />
+              <button>
+                <AiFillHeart
+                  onClick={() => dispatch(addCard(JSON.stringify({ data })))}
+                  className="text-blue-800 "
+                  size={24}
+                />
               </button>
             </div>
           </div>
