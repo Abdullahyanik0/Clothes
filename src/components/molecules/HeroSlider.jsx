@@ -21,7 +21,7 @@ const HeroSlider = () => {
       })
       .catch(function (error) {
         // handle error
-        console.log(error);
+     /*    console.log(error); */
       });
   };
   useEffect(() => {
@@ -51,7 +51,7 @@ const HeroSlider = () => {
   };
 
   shuffle(data);
-  console.log(data);
+
 
   return (
     <div className=" mb-12 ">

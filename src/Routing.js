@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import User from "pages/User";
 import Favorite from "pages/Favorite";
 import Element from "Element";
+import PageNotFound from "components/atoms/PageNotFound";
+import SingIn from "pages/SingIn";
 
 const Routing = () => {
   const items = [
@@ -13,39 +15,39 @@ const Routing = () => {
       path: "/",
       element: <Home />,
       exact: true,
-      isAuthProtected: false
-      
+      isAuthProtected: false,
     },
     {
       path: "detailpage/:id",
       element: <DetailPage />,
-      isAuthProtected: true
-     
+      isAuthProtected: false,
     },
     {
       path: "categorypage/:id",
       element: <CategoryPage />,
-      isAuthProtected: true     
+      isAuthProtected: false,
     },
     {
       path: "categorypage",
       element: <CategoryPage />,
-      isAuthProtected: true
+      isAuthProtected: false,
     },
     {
       path: "user",
       element: <User />,
-      isAuthProtected: false
+      isAuthProtected: false,
+    },
+    {
+      path: "singin",
+      element: <SingIn />,
+      isAuthProtected: false,
     },
     {
       path: "favorite",
       element: <Favorite />,
-   
+      isAuthProtected: true,
     },
-    /*  {
-      path: "/Game/catch/:name",
-      component: Game,
-    }, */
+    { path: "*", element: <PageNotFound /> },
   ];
 
   return (

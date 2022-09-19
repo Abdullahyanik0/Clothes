@@ -2,8 +2,8 @@ import Layout from "Layout/Layout";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Card from "components/Card";
-import Loading from "components/Loading";
+import Card from "components/molecules/Card";
+import Loading from "components/atoms/Loading";
 
 const CategoryPage = () => {
   const [data, setData] = useState();

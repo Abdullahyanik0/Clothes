@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { AiFillHeart } from "react-icons/ai";
-import Loading from "components/Loading";
+import Loading from "components/atoms/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { addCard } from "redux/CardSlice";
-import Size from "../components/Size";
+import Size from "../components/atoms/Size";
 
 const DetailPage = () => {
   const [data, setData] = useState([]);

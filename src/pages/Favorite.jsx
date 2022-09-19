@@ -5,6 +5,7 @@ import { useState } from "react";
 const Favorite = () => {
   const card = localStorage.getItem("items");
 
+
   const [item, setItem] = useState([card]);
   console.log(item);
 

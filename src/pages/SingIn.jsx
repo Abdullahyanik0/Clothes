@@ -6,16 +6,12 @@ import { AiOutlineLock } from "react-icons/ai";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const User = () => {
-  const userSakal = localStorage.getItem("user");
-  const [users, setUsers] = useState(userSakal);
-
-  console.log(users);
-
+const SingIn = () => {
+  const [user, setUser] = useState();
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
@@ -23,38 +19,30 @@ const User = () => {
       .min(6, "Password is too short - should be 6 chars minimum.")
       .max(10, "Password is too long - should be 10 chars maximum.")
       .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+    fullName: Yup.string()
+      .required("No password provided.")
+      .min(6, "Password is too short - should be 6 chars minimum.")
+      .max(10, "Password is too long - should be 10 chars maximum."),
   });
 
-  const userName = localStorage.getItem("user");
-  let navigate = useNavigate();
-  const handleRemove = () => {
-    localStorage.removeItem("user");
-    navigate("/");
-  };
-
-  const url = "https://ecommerceappexpress.herokuapp.com/api/product/register";
-
-  axios
-    .post(url, {
-      headers: {
-        fullName: "Flintstone",
-        email: "Fred@mail.com",
-        password: "123456",
-      },
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  const url = `https://ecommerceappexpress.herokuapp.com/api/product/register`;
+  useEffect(() => {
+    const requestOptions = {
+      method: "POST",
+      headers: { user },
+      body: JSON.stringify({ title: "React POST Request Example" }),
+    };
+    fetch(url, requestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log({ data }));
+  }, []);
 
   return (
     <LoginLayout>
-      <div className="flex justify-center">
+      <div className="flex justify-center !text-black">
         <div className="flex flex-col justify-center w-3/12 xxs:w-9/12 items-center">
           <div className="flex justify-between w-full text-3xl my-8">
-            <h1 className="">Sign in</h1>
+            <h1 className="">Register</h1>
             <h1 className="">
               <AiOutlineLock />
             </h1>
@@ -62,17 +50,26 @@ const User = () => {
 
           <Formik
             initialValues={{
+              fullName: "",
               email: "",
               password: "",
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
-              setUsers(values);
-              localStorage.setItem("user", values.email);
+              setUser(values);
             }}
           >
             {({ errors, touched }) => (
               <Form className="flex flex-col w-full ">
+                <Field
+                  placeholder="Fullname"
+                  className="p-3 border-[1px] border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
+                  name="fullName"
+                />
+
+                {errors.fullName && touched.fullName ? (
+                  <div className="text-red-600">{errors.fullName}</div>
+                ) : null}
                 <Field
                   placeholder="Email"
                   className="p-3 border-[1px] border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
@@ -102,14 +99,8 @@ const User = () => {
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
                   type="submit"
                 >
-                  Sing In
+                  Register
                 </button>
-                <h1 className="text-xl xxs:text-base flex xxs:gap-x-2 gap-x-1">
-                  Don't have an account?
-                  <a className="text-[#3d7c7d] font-semibold" href="/singin">
-                    Create one now.
-                  </a>
-                </h1>
               </Form>
             )}
           </Formik>
@@ -119,4 +110,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default SingIn;

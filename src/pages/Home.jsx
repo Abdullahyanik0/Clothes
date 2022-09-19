@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "Layout/Layout";
-import Slider from "components/Slider";
+import Slider from "components/molecules/Slider";
 import { useState } from "react";
-import Loading from "components/Loading";
-import HeroSlider from "components/HeroSlider";
-import Box from "components/Box";
-
+import Loading from "components/atoms/Loading";
+import HeroSlider from "components/molecules/HeroSlider";
+import Box from "components/molecules/Box";
+import DarkButton from "components/atoms/DarkButton";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +23,6 @@ const Home = () => {
       </div>
       <HeroSlider />
 
-      
 
       <div className="flex justify-center">
         <h1 className="p-4  hover:text-white hover:bg-slate-400  border-2 border-slate-400 mt-4 rounded font-bold text-sm">

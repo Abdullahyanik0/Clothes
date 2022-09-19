@@ -15,7 +15,7 @@ const Ul = styled.ul`
 
   @media (max-width: 768px) {
     flex-flow: column nowrap;
-    background-color: #304d4e;
+    background-color: #1B1A17;
     position: fixed;
     transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
     top: 0;
@@ -35,27 +35,29 @@ const user = localStorage.getItem("user");
 
 const RightNav = ({ open }) => {
   const navbar = [
-    { id: nanoid(), name: "Snowboarding", link: "/" },
+    { id: nanoid(), name: "Snowboarding", link: "/categorypage/women" },
     { id: nanoid(), name: "Women", link: "/categorypage/women" },
     { id: nanoid(), name: "Men", link: "/categorypage/man" },
-    { id: nanoid(), name: "Kids ", link: "/" },
+    { id: nanoid(), name: "Kids ", link: "/categorypage/women" },
     { id: nanoid(), name: "Accessories & Bags ", link: "/categorypage/bag" },
-    { id: nanoid(), name: "Sale ", link: "/" },
-    { id: nanoid(), name: "MINE77", link: "/user" },
+    { id: nanoid(), name: "Sale ", link: "/categorypage/women" },
+    { id: nanoid(), name: "MINE77", link: "/categorypage/women" },
   ];
 
   return (
     <Ul open={open} className="z-10 ml-40  ">
       {user && (
-        <Avatar
-          className="!absolute top-8 xl:!hidden"
-          alt="Travis Howard"
-          src="https://mui.com/static/images/avatar/3.jpg"
-        />
+        <NavLink to="/user">
+          <Avatar
+            className="!absolute top-8 xl:!hidden"
+            alt="Travis Howard"
+            src="https://mui.com/static/images/avatar/3.jpg"
+          />
+        </NavLink>
       )}
       <a
         href="/user"
-        className="text-white text-lg mt-4 font-semibold xxl:hidden "
+        className="text-white text-lg mt-4 font-semibold xxs:block hidden "
       >
         {user}
       </a>
