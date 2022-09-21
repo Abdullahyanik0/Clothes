@@ -36,14 +36,14 @@ const Header = () => {
               onClick={handleChange}
             />
           </div>
-          <div className="w-72 xxs:hidden flex items-center relative">
+          <div className="w-72 xxs:hidden xxm:!hidden flex items-center relative">
             <input
               className="border-[1px] w-full border-[#bbb] rounded-xs p-2 !text-black  !font-medium text-base"
               placeholder="Search"
               type="text"
             />
 
-            <BsSearch size={20} className="absolute right-2 " />
+            <BsSearch size={20} className="absolute  right-2 " />
           </div>
         </div>
       </div>

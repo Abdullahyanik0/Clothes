@@ -10,18 +10,19 @@ import { useEffect, useState } from "react";
 const HeroSlider = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
+  const token = localStorage.getItem("token");
 
   const url = "https://ecommerceappexpress.herokuapp.com/api/product";
   const fetchData = () => {
     axios
-      .get(url)
+      .get(url, { headers: { token } })
       .then(function (response) {
         // handle success
         setData(response.data.result.data);
       })
       .catch(function (error) {
         // handle error
-     /*    console.log(error); */
+        /*    console.log(error); */
       });
   };
   useEffect(() => {
@@ -52,9 +53,8 @@ const HeroSlider = () => {
 
   shuffle(data);
 
-
   return (
-    <div className=" mb-12 ">
+    <div className=" mb-12  text-black">
       <Swiper
         breakpoints={{
           500: {

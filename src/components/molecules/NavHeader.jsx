@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const NavHeader = () => {
   return (
-    <div className="h-[43px]  text-gray-600 flex xxs:hidden  justify-between items-center mx-4 px-12 font-bold text-[12px]">
+    <div className="h-[43px]  text-gray-600 flex xxm:hidden xxs:hidden  justify-between items-center mx-4 px-12 font-bold text-[12px]">
       <ul className="flex gap-x-3 cursor-pointer ">
         <li className="pr-1 font-extrabold">BURTON</li>
         <li>ANON</li>
@@ -32,7 +32,7 @@ const NavHeader = () => {
           Tr/Tr
           <MdKeyboardArrowDown size={20} />
         </div>
-        <NavLink to="/user">Sign In</NavLink>
+        <NavLink to="/singin">Sign In</NavLink>
         <p>
           <MdOutlineShoppingBasket size={20} />
         </p>

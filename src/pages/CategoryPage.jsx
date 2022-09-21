@@ -10,13 +10,14 @@ const CategoryPage = () => {
   const [isLoading, setLoading] = useState(true);
   let params = useParams();
   const categories = params;
-
   const url = `https://ecommerceappexpress.herokuapp.com/api/product/?categories=${categories.id}`;
+  const token = localStorage.getItem("token");
+
 
   const fetchData = () => {
     setLoading(true);
     axios
-      .get(url)
+      .get(url, { headers: { token } })
       .then(function (response) {
         // handle success
         setData(response.data.result.data);
@@ -32,8 +33,6 @@ const CategoryPage = () => {
       });
   };
 
-  
-
   useEffect(() => {
     fetchData();
   }, [params]);
@@ -43,7 +42,7 @@ const CategoryPage = () => {
     </Layout>
   ) : (
     <Layout>
-      <div className="grid grid-cols-4 gap-12  xxs:grid-cols-2 xxs:gap-y-4 mb-20">
+      <div className="grid grid-cols-4 gap-12 text-black xxs:grid-cols-2 xxs:gap-y-4 mb-20">
         {data?.map((data) => (
           <Card
             key={data?._id}

@@ -17,6 +17,7 @@ module.exports = {
 
       xxl: { max: "1279px" },
       xxs: { max: "500px" },
+      xxm: { max: "900px" },
     },
   },
   plugins: [],

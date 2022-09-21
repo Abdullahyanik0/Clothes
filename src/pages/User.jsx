@@ -11,10 +11,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const User = () => {
-  const userSakal = localStorage.getItem("user");
-  const [users, setUsers] = useState(userSakal);
-
-  console.log(users);
+  const [users, setUsers] = useState();
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -25,29 +22,25 @@ const User = () => {
       .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
   });
 
-  const userName = localStorage.getItem("user");
-  let navigate = useNavigate();
-  const handleRemove = () => {
-    localStorage.removeItem("user");
+  const url = "https://ecommerceappexpress.herokuapp.com/api/auth/login";
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    axios
+      .post(url, {
+        fullName: "Abdullah",
+        email: "deneme@gmail.com",
+        password: "123456aa",
+      })
+      .then(function (response) {
+        console.log(response);
+        localStorage.setItem("token", response.data.token);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     navigate("/");
   };
-
-  const url = "https://ecommerceappexpress.herokuapp.com/api/product/register";
-
-  axios
-    .post(url, {
-      headers: {
-        fullName: "Flintstone",
-        email: "Fred@mail.com",
-        password: "123456",
-      },
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
 
   return (
     <LoginLayout>
@@ -68,10 +61,11 @@ const User = () => {
             validationSchema={SignupSchema}
             onSubmit={(values) => {
               setUsers(values);
+              console.log(values);
               localStorage.setItem("user", values.email);
             }}
           >
-            {({ errors, touched }) => (
+            {({ errors, touched ,dirty, isValid }) => (
               <Form className="flex flex-col w-full ">
                 <Field
                   placeholder="Email"
@@ -101,6 +95,8 @@ const User = () => {
                 <button
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
                   type="submit"
+                  disabled={!(dirty && isValid)}
+                  onClick={handleClick}
                 >
                   Sing In
                 </button>
@@ -110,6 +106,7 @@ const User = () => {
                     Create one now.
                   </a>
                 </h1>
+                <p> {Formik.isValid === true ? "True" : "False"} </p>
               </Form>
             )}
           </Formik>

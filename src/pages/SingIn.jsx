@@ -7,8 +7,8 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
-import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SingIn = () => {
   const [user, setUser] = useState();
@@ -24,18 +24,24 @@ const SingIn = () => {
       .min(6, "Password is too short - should be 6 chars minimum.")
       .max(10, "Password is too long - should be 10 chars maximum."),
   });
+  const url = "https://ecommerceappexpress.herokuapp.com/api/auth/register";
 
-  const url = `https://ecommerceappexpress.herokuapp.com/api/product/register`;
-  useEffect(() => {
-    const requestOptions = {
-      method: "POST",
-      headers: { user },
-      body: JSON.stringify({ title: "React POST Request Example" }),
-    };
-    fetch(url, requestOptions)
-      .then((response) => response.json())
-      .then((data) => console.log({ data }));
-  }, []);
+
+  const handleClick = () => {
+    axios
+      .post(url, {
+        fullName: "Abdullah",
+        email: "deneme@gmail.com",
+        password: "123456a",
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      
+  };
 
   return (
     <LoginLayout>
@@ -62,7 +68,7 @@ const SingIn = () => {
             {({ errors, touched }) => (
               <Form className="flex flex-col w-full ">
                 <Field
-                  placeholder="Fullname"
+                  placeholder="Name"
                   className="p-3 border-[1px] border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
                   name="fullName"
                 />
@@ -98,6 +104,7 @@ const SingIn = () => {
                 <button
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
                   type="submit"
+                  onClick={handleClick}
                 >
                   Register
                 </button>

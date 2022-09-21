@@ -21,11 +21,13 @@ const DetailPage = () => {
 
   const url = `https://ecommerceappexpress.herokuapp.com/api/product/${detail?.id}`;
 
+  const token = localStorage.getItem("token");
+
   const fetchData = () => {
     setLoading(true);
     axios
 
-      .get(url)
+      .get(url, { headers: { token } })
       .then(function (response) {
         setData(response.data.product[0]);
 
