@@ -9,6 +9,7 @@ const Layout = ({ children }) => {
     <div className={`${color}`}>
       <Header />
       <div>
+        
         <div className="w-10/12 xxs:w-[95%] m-auto xs:w-full ">{children}</div>
         <Footer />
       </div>

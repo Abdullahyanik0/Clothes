@@ -6,6 +6,7 @@ import { Navigation, Autoplay } from "swiper";
 import Card from "./Card";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loading from "../atoms/Loading"
 
 const HeroSlider = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,8 +22,8 @@ const HeroSlider = () => {
         setData(response.data.result.data);
       })
       .catch(function (error) {
-        // handle error
-        /*    console.log(error); */
+      
+           console.log(error);
       });
   };
   useEffect(() => {
@@ -53,7 +54,9 @@ const HeroSlider = () => {
 
   shuffle(data);
 
-  return (
+  return isLoading ? (
+    <Loading/>
+  ) : (
     <div className=" mb-12  text-black">
       <Swiper
         breakpoints={{

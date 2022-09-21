@@ -34,7 +34,7 @@ const CategoryPage = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, [params]);
   return isLoading ? (
     <Layout>

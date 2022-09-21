@@ -6,11 +6,11 @@ const Element = ({ item }) => {
   const { element, isAuthProtected } = item;
 
   const Render = useCallback(() => {
-  /*   console.log(element.type.name); */
+    /*   console.log(element.type.name); */
     if (!user && isAuthProtected) return <Navigate to="/user" />;
 
     return <>{element}</>;
-  }, [element]);
+  }, [element])
 
   return <Render />;
 };

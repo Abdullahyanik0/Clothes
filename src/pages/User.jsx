@@ -6,13 +6,10 @@ import { AiOutlineLock } from "react-icons/ai";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const User = () => {
-  const [users, setUsers] = useState();
-
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
@@ -60,12 +57,11 @@ const User = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
-              setUsers(values);
               console.log(values);
               localStorage.setItem("user", values.email);
             }}
           >
-            {({ errors, touched ,dirty, isValid }) => (
+            {({ errors, touched, dirty, isValid }) => (
               <Form className="flex flex-col w-full ">
                 <Field
                   placeholder="Email"
@@ -106,7 +102,6 @@ const User = () => {
                     Create one now.
                   </a>
                 </h1>
-                <p> {Formik.isValid === true ? "True" : "False"} </p>
               </Form>
             )}
           </Formik>

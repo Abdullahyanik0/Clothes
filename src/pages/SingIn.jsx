@@ -7,11 +7,8 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 const SingIn = () => {
-  const [user, setUser] = useState();
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
@@ -26,7 +23,6 @@ const SingIn = () => {
   });
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/register";
 
-
   const handleClick = () => {
     axios
       .post(url, {
@@ -40,7 +36,6 @@ const SingIn = () => {
       .catch(function (error) {
         console.log(error);
       });
-      
   };
 
   return (
@@ -62,7 +57,7 @@ const SingIn = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
-              setUser(values);
+              console.log(values);
             }}
           >
             {({ errors, touched }) => (
@@ -111,6 +106,12 @@ const SingIn = () => {
               </Form>
             )}
           </Formik>
+          <div className="flex gap-2 text-xl font-semibold">
+            <p>Already have an account? </p>
+            <Link to="/user">
+              <p className=" text-[#3d7c7d] ">Sign in</p>
+            </Link>
+          </div>
         </div>
       </div>
     </LoginLayout>
