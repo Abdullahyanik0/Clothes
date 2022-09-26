@@ -95,7 +95,15 @@ const User = () => {
           </button>
         </div>
       </div>
-      <HeroSlider />
+      <div className="m-2">
+         <div className="text-center ">
+        <h1 className="font-bold text-3xl">Active Elements</h1>
+        <h1 className="font-semibold text-base my-2">
+          Softgoods designed, tested, and proven to magnify your experience.
+        </h1>
+      </div>
+        <HeroSlider />
+      </div>
     </LoginLayout>
   ) : (
     <LoginLayout>

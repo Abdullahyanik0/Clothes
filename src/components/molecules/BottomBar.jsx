@@ -29,17 +29,17 @@ export default function SimpleBottomNavigation() {
             icon={<HomeIcon />}
           />
           <BottomNavigationAction
-          className={`${color}`}
+            className={`${color}`}
             label={<Link to="/basket">Basket</Link>}
             icon={<ShoppingBasketIcon />}
           />
           <BottomNavigationAction
-          className={`${color}`}
+            className={`${color}`}
             label={<Link to="/basket">Favorite</Link>}
             icon={<FavoriteIcon />}
           />
           <BottomNavigationAction
-          className={`${color}`}
+            className={`${color}`}
             label={<Link to="/user">User</Link>}
             icon={<PersonIcon />}
           />

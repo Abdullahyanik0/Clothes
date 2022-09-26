@@ -56,7 +56,7 @@ const HeroSlider = () => {
   return isLoading ? (
     <Loading />
   ) : (
-    <div className=" mb-12  text-black">
+    <div className="  text-black">
       <Swiper
         breakpoints={{
           500: {
