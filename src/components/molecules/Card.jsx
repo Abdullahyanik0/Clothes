@@ -14,7 +14,7 @@ const Card = ({
   let navigate = useNavigate();
   const handleClick = () => {
     navigate("/detailpage/" + id);
-    console.log(id);
+   
   };
   return (
     <>

@@ -11,7 +11,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const label = { inputProps: { "aria-label": "Switch demo" } };
   const color = useSelector((state) => state.card.headerColor);
-  console.log(color);
+
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event) => {

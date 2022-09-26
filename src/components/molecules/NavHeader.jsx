@@ -19,9 +19,9 @@ const NavHeader = () => {
         <p className="underline text-black cursor-pointer">JOIN NOW</p>
       </div>
       <div className="flex gap-x-3 !font-medium cursor-pointer">
-        <a href="/favorite">
+        <NavLink to="/favorite">
           <AiOutlineHeart className="mr-4" size={20} />
-        </a>
+        </NavLink>
         <p>Stores</p>
         <div className="flex gap-x-3   ">
           <img
@@ -33,9 +33,9 @@ const NavHeader = () => {
           <MdKeyboardArrowDown size={20} />
         </div>
         <NavLink to="/singin">Sign In</NavLink>
-        <p>
+        <NavLink to="/basket">
           <MdOutlineShoppingBasket size={20} />
-        </p>
+        </NavLink>
       </div>
     </div>
   );

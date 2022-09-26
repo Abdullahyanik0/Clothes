@@ -6,7 +6,7 @@ import { Navigation, Autoplay } from "swiper";
 import Card from "./Card";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Loading from "../atoms/Loading"
+import Loading from "../atoms/Loading";
 
 const HeroSlider = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,8 +22,7 @@ const HeroSlider = () => {
         setData(response.data.result.data);
       })
       .catch(function (error) {
-      
-           console.log(error);
+        console.log(error);
       });
   };
   useEffect(() => {
@@ -55,7 +54,7 @@ const HeroSlider = () => {
   shuffle(data);
 
   return isLoading ? (
-    <Loading/>
+    <Loading />
   ) : (
     <div className=" mb-12  text-black">
       <Swiper
@@ -77,6 +76,7 @@ const HeroSlider = () => {
           <SwiperSlide key={data?._id}>
             <Card
               key={data?._id}
+              id={data?._id}
               price={data?.price}
               categories={data?.categories}
               selected={data?.selected}

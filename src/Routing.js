@@ -4,7 +4,7 @@ import DetailPage from "pages/DetailPage";
 import CategoryPage from "pages/CategoryPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import User from "pages/User";
-import Favorite from "pages/Favorite";
+import Basket from "pages/Basket";
 import Element from "Element";
 import PageNotFound from "components/atoms/PageNotFound";
 import SingIn from "pages/SingIn";
@@ -43,8 +43,8 @@ const Routing = () => {
       isAuthProtected: false,
     },
     {
-      path: "favorite",
-      element: <Favorite />,
+      path: "basket",
+      element: <Basket />,
       isAuthProtected: true,
     },
     { path: "*", element: <PageNotFound /> },
