@@ -32,25 +32,11 @@ const User = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
+  const color = localStorage.getItem("color");
 
   const textStyle =
     "flex gap-3 items-center text-2xl hover:underline underline-offset-4  mt-4";
 
-  const handleClick = () => {
-    axios
-      .post(url, {
-        fullName: "Abdullah",
-        email: "deneme@gmail.com",
-        password: "123456aa",
-      })
-      .then(function (response) {
-        localStorage.setItem("token", response.data.token);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    navigate("/");
-  };
   const handleRemove = () => {
     localStorage.removeItem("token");
     navigate("/user");
@@ -129,7 +115,15 @@ const User = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
-              localStorage.setItem("user", values.email);
+              axios
+                .post(url, values)
+                .then(function (response) {
+                  localStorage.setItem("token", response.data.token);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+              navigate("/");
             }}
           >
             {({ errors, touched, dirty, isValid }) => (
@@ -163,11 +157,10 @@ const User = () => {
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
                   type="submit"
                   disabled={!(dirty && isValid)}
-                  onClick={handleClick}
                 >
                   Sing In
                 </button>
-                <h1 className="text-xl xxs:text-base flex xxs:gap-x-2 gap-x-1">
+                <h1 className="text-xl font-semibold xxs:text-base flex xxs:gap-x-2 gap-x-1">
                   Don't have an account?
                   <a className="text-[#3d7c7d] font-semibold" href="/singin">
                     Create one now.

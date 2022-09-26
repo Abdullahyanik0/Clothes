@@ -7,7 +7,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const SingIn = () => {
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -22,25 +22,12 @@ const SingIn = () => {
       .max(10, "Password is too long - should be 10 chars maximum."),
   });
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/register";
-
-  const handleClick = () => {
-    axios
-      .post(url, {
-        fullName: "Abdullah",
-        email: "deneme@gmail.com",
-        password: "123456a",
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  const navigate = useNavigate();
+ 
 
   return (
     <LoginLayout>
-      <div className="flex justify-center !text-black">
+      <div className="flex justify-center ">
         <div className="flex flex-col justify-center w-3/12 xxs:w-9/12 items-center">
           <div className="flex justify-between w-full text-3xl my-8">
             <h1 className="">Register</h1>
@@ -58,13 +45,22 @@ const SingIn = () => {
             validationSchema={SignupSchema}
             onSubmit={(values) => {
               console.log(values);
+              axios
+                .post(url, values)
+                .then(function (response) {
+                  console.log(response);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+              navigate("/user");
             }}
           >
             {({ errors, touched }) => (
               <Form className="flex flex-col w-full ">
                 <Field
                   placeholder="Name"
-                  className="p-3 border-[1px] border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
+                  className="p-3 border-[1px] !text-black border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
                   name="fullName"
                 />
 
@@ -73,7 +69,7 @@ const SingIn = () => {
                 ) : null}
                 <Field
                   placeholder="Email"
-                  className="p-3 border-[1px] border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
+                  className="p-3 border-[1px] !text-black border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
                   name="email"
                 />
 
@@ -82,7 +78,7 @@ const SingIn = () => {
                 ) : null}
                 <Field
                   placeholder="Password"
-                  className="p-3 border-[1px] border-gray-400 rounded-md  placeholder:text-gray-500 mb-4 my-1"
+                  className="p-3 border-[1px] !text-black border-gray-400 rounded-md  placeholder:text-gray-500 mb-4 my-1"
                   name="password"
                   type="password"
                 />
@@ -99,7 +95,7 @@ const SingIn = () => {
                 <button
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
                   type="submit"
-                  onClick={handleClick}
+                
                 >
                   Register
                 </button>
