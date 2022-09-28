@@ -35,7 +35,7 @@ const User = () => {
   const color = localStorage.getItem("color");
 
   const textStyle =
-    "flex gap-3 items-center text-2xl hover:underline underline-offset-4  mt-4";
+    "flex gap-3 items-center  text-2xl hover:underline underline-offset-4  mt-4";
 
   const handleRemove = () => {
     localStorage.removeItem("token");
@@ -44,66 +44,70 @@ const User = () => {
 
   return token ? (
     <LoginLayout>
-      <div className="mx-6">
-        <div className=" font-semibold items-center  ml-2 flex justify-between">
-          <p className="text-2xl ">{user}</p>
-          <div>
-            <Avatar
-              sx={{ width: 56, height: 56 }}
-              alt="Cindy Baker"
-              src="https://mui.com/static/images/avatar/3.jpg"
-            />
+      <div className="flex justify-center items-center flex-col xxs:mx-4 ">
+        <div className="w-[600px] xxs:w-full ">
+          <div className=" font-semibold items-center  ml-2 flex justify-between">
+            <p className="text-2xl ">{user}</p>
+            <div>
+              <Avatar
+                sx={{ width: 56, height: 56 }}
+                alt="Cindy Baker"
+                src="https://mui.com/static/images/avatar/3.jpg"
+              />
+            </div>
+          </div>
+
+          <ul className="font-semibold border-2 rounded-lg shadow-xl  pb-4 p-4 mt-12">
+            <li className={textStyle}>
+              <AddShoppingCartIcon /> My previous orders
+            </li>
+            <li className={textStyle}>
+              <InfoIcon />
+              About
+            </li>
+            <li className={textStyle}>
+              <BookIcon />
+              Blog
+            </li>
+            <li className={textStyle}>
+              <PhoneIcon />
+              Contact
+            </li>
+          </ul>
+          <ul className="font-semibold border-2 rounded-lg shadow-xl p-4 pb-4 mt-4 ">
+            <li className={textStyle}>
+              <FavoriteIcon />
+              Favorites
+            </li>
+            <li className={textStyle}>
+              <DeleteIcon />
+              Basket
+            </li>
+            <li className={textStyle}>
+              <SellIcon />
+              Coupon
+            </li>
+          </ul>
+          <div className="flex justify-end">
+            <button
+              className="bg-[#3d7c7d]  w-36 rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
+              type="submit"
+              onClick={handleRemove}
+            >
+              Log out
+            </button>
           </div>
         </div>
-
-        <ul className="font-semibold p-1 mt-8">
-          <li className={textStyle}>
-            <AddShoppingCartIcon /> My previous orders
-          </li>
-          <li className={textStyle}>
-            <InfoIcon />
-            About
-          </li>
-          <li className={textStyle}>
-            <BookIcon />
-            Blog
-          </li>
-          <li className={textStyle}>
-            <PhoneIcon />
-            Contact
-          </li>
-          <li className={textStyle}>
-            <FavoriteIcon />
-            Favorites
-          </li>
-          <li className={textStyle}>
-            <DeleteIcon />
-            Basket
-          </li>
-          <li className={textStyle}>
-            <SellIcon />
-            Coupon
-          </li>
-        </ul>
-        <div className="flex justify-end">
-          <button
-            className="bg-[#3d7c7d]  w-36 rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
-            type="submit"
-            onClick={handleRemove}
-          >
-            Log out
-          </button>
+        <div className="m-2">
+          <div className="text-center ">
+            <h1 className="font-bold text-3xl">Active Elements</h1>
+            <h1 className="font-semibold text-base my-2">
+              Softgoods designed, tested, and proven to magnify your experience.
+            </h1>
+          </div>
         </div>
       </div>
-      <div className="m-2">
-         <div className="text-center ">
-        <h1 className="font-bold text-3xl">Active Elements</h1>
-        <h1 className="font-semibold text-base my-2">
-          Softgoods designed, tested, and proven to magnify your experience.
-        </h1>
-      </div>
-        <HeroSlider />
-      </div>
+      <HeroSlider />
     </LoginLayout>
   ) : (
     <LoginLayout>

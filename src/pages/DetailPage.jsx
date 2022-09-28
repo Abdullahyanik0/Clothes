@@ -14,7 +14,6 @@ import Comments from "components/atoms/Comments";
 const DetailPage = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [basket, setBasket] = useState([]);
 
   const items = useSelector((state) => state.card.items);
   console.log(items);
@@ -43,6 +42,8 @@ const DetailPage = () => {
   useEffect(() => {
     fetchData();
   }, [params]);
+  const id = data?._id;
+  console.log(id);
 
   return isLoading ? (
     <Layout>
@@ -52,7 +53,9 @@ const DetailPage = () => {
     <Layout>
       <div className="flex justify-center xxs:flex-col  my-12 gap-x-16">
         <div className="w-96 xxs:w-full relative">
-          <p className="font-semibold py-2 xxs:block mb-3 md:hidden  ">{data?.name}</p>
+          <p className="font-semibold py-2 xxs:block mb-3 md:hidden  ">
+            {data?.name}
+          </p>
           <img className="w-full object-cover" src={data?.imgUrl} alt="" />
         </div>
 
@@ -66,7 +69,7 @@ const DetailPage = () => {
 
           <div className="flex relative items-center">
             <button
-              onClick={() => dispatch(addCard(data?._id + data.name))}
+              onClick={() => dispatch(addCard({ id }))}
               className="bg-black text-white w-full h-12 rounded"
             >
               Add to cart

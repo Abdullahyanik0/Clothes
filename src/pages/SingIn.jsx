@@ -16,14 +16,10 @@ const SingIn = () => {
       .min(6, "Password is too short - should be 6 chars minimum.")
       .max(10, "Password is too long - should be 10 chars maximum.")
       .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
-    fullName: Yup.string()
-      .required("No password provided.")
-      .min(6, "Password is too short - should be 6 chars minimum.")
-      .max(10, "Password is too long - should be 10 chars maximum."),
+    fullName: Yup.string().required("Required."),
   });
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/register";
   const navigate = useNavigate();
- 
 
   return (
     <LoginLayout>
@@ -95,7 +91,6 @@ const SingIn = () => {
                 <button
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
                   type="submit"
-                
                 >
                   Register
                 </button>
