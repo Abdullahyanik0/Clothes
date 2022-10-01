@@ -8,6 +8,7 @@ import Basket from "pages/Basket";
 import Element from "Element";
 import PageNotFound from "components/atoms/PageNotFound";
 import SingIn from "pages/SingIn";
+import Favorite from "pages/Favorite";
 
 const Routing = () => {
   const items = [
@@ -45,6 +46,11 @@ const Routing = () => {
     {
       path: "basket",
       element: <Basket />,
+      isAuthProtected: true,
+    },
+    {
+      path: "favorite",
+      element: <Favorite />,
       isAuthProtected: true,
     },
     { path: "*", element: <PageNotFound /> },

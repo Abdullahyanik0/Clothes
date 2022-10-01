@@ -6,6 +6,7 @@ import { BsSearch } from "react-icons/bs";
 import DarkButton from "../atoms/DarkButton";
 import { useSelector, useDispatch } from "react-redux";
 import { changeHeaderColor } from "redux/CardSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -23,9 +24,9 @@ const Header = () => {
       <NavHeader />
       <div className="flex justify-center xxs:p-2 border-y-[1px] h-[91px] items-center p-11  font-bold text-[13px] ">
         <div className="w-full flex justify-between items-center ">
-          <a href="/">
+          <Link to="/">
             <img className="xxs:w-24 w-24 xxs:m-0  ml-3" src={logo} alt="" />
-          </a>
+          </Link>
           <Navbar />
           <div className="absolute flex  items-center right-[330px] xxl:right-12 xxl:pt-3">
             <p>Dark Mode</p>

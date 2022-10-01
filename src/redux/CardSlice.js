@@ -3,14 +3,37 @@ import { createSlice } from "@reduxjs/toolkit";
 export const CardSlice = createSlice({
   name: "card",
   initialState: {
-    items: [localStorage.getItem("items")],
+    items: [],
+
     headerColor: localStorage.getItem("color"),
   },
   reducers: {
-    addCard: (state, action) => {
-      state.items.push(action.payload);
-      localStorage.setItem("items", state.items);
+    addCard: (state, { payload: { data } }) => {
+      const items = state.items.map((item) =>
+        item._id === data._id
+          ? { ...item, quantity: Number(item.quantity) + 1 }
+          : item
+      );
+
+      items.push(data);
+
+      const filteredItem = items.filter(
+        (value, index, self) =>
+          index ===
+          self.findIndex((t) => {
+            return t._id === value._id;
+          })
+      );
+
+      state.items = filteredItem;
     },
+
+    /*  removeCard: (state, payload) => {
+      const result = state.items.filter((res) =>
+        res.id === payload ? (state.items = []) : ""
+      );
+    }, */
+
     changeHeaderColor: {
       reducer: (state) => {
         if (state.headerColor === "!bg-white") {
@@ -21,10 +44,10 @@ export const CardSlice = createSlice({
         localStorage.setItem("color", state.headerColor);
       },
     },
-    reducers: {},
   },
 });
 
-export const { changeHeaderColor, addCard } = CardSlice.actions;
+export const { changeHeaderColor, addCard, removeCard, addFavorite } =
+  CardSlice.actions;
 
 export default CardSlice.reducer;

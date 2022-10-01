@@ -32,7 +32,6 @@ const User = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
-  const color = localStorage.getItem("color");
 
   const textStyle =
     "flex gap-3 items-center  text-2xl hover:underline underline-offset-4  mt-4";
@@ -47,7 +46,7 @@ const User = () => {
       <div className="flex justify-center items-center flex-col xxs:mx-4 ">
         <div className="w-[600px] xxs:w-full ">
           <div className=" font-semibold items-center  ml-2 flex justify-between">
-            <p className="text-2xl ">{user}</p>
+            <p className="text-xl ">User: {user}</p>
             <div>
               <Avatar
                 sx={{ width: 56, height: 56 }}
@@ -57,7 +56,7 @@ const User = () => {
             </div>
           </div>
 
-          <ul className="font-semibold border-2 rounded-lg shadow-xl  pb-4 p-4 mt-12">
+          <ul className="font-semibold border-2 rounded-lg shadow-xl  pb-4 px-4 mt-6">
             <li className={textStyle}>
               <AddShoppingCartIcon /> My previous orders
             </li>
@@ -74,7 +73,7 @@ const User = () => {
               Contact
             </li>
           </ul>
-          <ul className="font-semibold border-2 rounded-lg shadow-xl p-4 pb-4 mt-4 ">
+          <ul className="font-semibold border-2 rounded-lg shadow-xl px-4 pb-4 mt-4 ">
             <li className={textStyle}>
               <FavoriteIcon />
               Favorites
@@ -131,11 +130,11 @@ const User = () => {
                 .post(url, values)
                 .then(function (response) {
                   localStorage.setItem("token", response.data.token);
+                  navigate("/");
                 })
                 .catch(function (error) {
                   console.log(error);
                 });
-              navigate("/");
             }}
           >
             {({ errors, touched, dirty, isValid }) => (
