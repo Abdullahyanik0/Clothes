@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import BasketCard from "./BasketCard";
 
 const BasketBoard = () => {
   const items = useSelector((state) => state.card.items);
-  console.log(items);
 
-  return (
+
+  return items.length > 0 ? (
     <div className="mt-12">
       {items?.map((item) => (
         <BasketCard
@@ -22,6 +23,21 @@ const BasketBoard = () => {
           id={item?._id}
         />
       ))}
+    </div>
+  ) : (
+    <div className="text-center mb-24 mt-8">
+      <h1 className="text-2xl font-semibold  underline-offset-4 underline">
+        Your Shopping Cart is Empty
+      </h1>
+
+      <div className="text-center my-12 ">
+        <Link
+          to="/"
+          className="bg-[#3d7c7d]  p-4 w-48 rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
+        >
+          Keep Shopping
+        </Link>
+      </div>
     </div>
   );
 };

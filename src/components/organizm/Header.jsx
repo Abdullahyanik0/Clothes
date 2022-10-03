@@ -7,13 +7,14 @@ import DarkButton from "../atoms/DarkButton";
 import { useSelector, useDispatch } from "react-redux";
 import { changeHeaderColor } from "redux/CardSlice";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
   const label = { inputProps: { "aria-label": "Switch demo" } };
   const color = useSelector((state) => state.card.headerColor);
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);

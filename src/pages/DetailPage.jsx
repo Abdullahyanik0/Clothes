@@ -38,7 +38,7 @@ const DetailPage = () => {
 
     fetchData();
   }, [detail]);
-  const favoriteDisabled = () => {};
+  console.log(data);
 
   return isLoading ? (
     <Layout>
@@ -69,13 +69,13 @@ const DetailPage = () => {
             >
               Add to cart
             </button>
-            <div className="border-2 rounded-xl border-blue-400 ml-4 h-12 items-center flex w-12 justify-center">
-              <button onClick={favoriteDisabled}>
+            <div>
+              <button className=" focus:disabled  ml-4 h-12 items-center flex w-12 justify-center">
                 <AiFillHeart
                   onClick={() => dispatch(addFavorite({ data }))}
-                  className="text-yellow-600 "
-                  size={24}
+                  size={32}
                 />
+      {/*           {data.selected ? "true" : "false"} */}
               </button>
             </div>
           </div>

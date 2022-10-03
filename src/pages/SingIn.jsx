@@ -40,7 +40,7 @@ const SingIn = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
-              console.log(values);
+             
               axios
                 .post(url, values)
                 .then(function (response) {

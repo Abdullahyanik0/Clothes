@@ -9,15 +9,15 @@ export const CardSlice = createSlice({
   },
   reducers: {
     addCard: (state, { payload: { data } }) => {
-      const items = state.items.map((item) =>
-        item._id === data._id
+      const items = state.items?.map((item) =>
+        item?._id === data?._id
           ? { ...item, quantity: Number(item.quantity) + 1 }
           : item
       );
 
       items.push(data);
 
-      const filteredItem = items.filter(
+      const filteredItem = items?.filter(
         (value, index, self) =>
           index ===
           self.findIndex((t) => {
@@ -28,11 +28,23 @@ export const CardSlice = createSlice({
       state.items = filteredItem;
     },
 
-    /*  removeCard: (state, payload) => {
-      const result = state.items.filter((res) =>
-        res.id === payload ? (state.items = []) : ""
-      );
-    }, */
+    removeCard: (state, action) => {
+      const id = action.payload;
+      state.items = state.items.filter((item) => item._id !== id);
+    },
+    increase: (state, { payload }) => {
+      const id = payload.id;
+      const quantity = payload.quantity;
+      const item = state.items.find((item) => item._id === id);
+      item.quantity = Number(quantity) + 1;
+    },
+
+    decrease: (state, { payload }) => {
+      const id = payload.id;
+      const quantity = payload.quantity;
+      const item = state.items.find((item) => item._id === id);
+      item.quantity = Number(quantity) - 1;
+    },
 
     changeHeaderColor: {
       reducer: (state) => {
@@ -47,7 +59,7 @@ export const CardSlice = createSlice({
   },
 });
 
-export const { changeHeaderColor, addCard, removeCard, addFavorite } =
+export const { changeHeaderColor, addCard, removeCard, increase, decrease } =
   CardSlice.actions;
 
 export default CardSlice.reducer;

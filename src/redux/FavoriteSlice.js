@@ -7,15 +7,16 @@ export const FavoriteSlice = createSlice({
   },
   reducers: {
     addFavorite: (state, { payload: { data } }) => {
-      const favorite = state.favorite.map((item) =>
-        item._id === data._id
-          ? { ...item, quantity: Number(item.quantity) + 1 }
+      const items = state.favorite?.map((item) =>
+        item?._id === data?._id
+          ? { ...item, selected: item.selected === true ? false : true }
           : item
       );
 
-      favorite.push(data);
+      items.push(data);
+    
 
-      const filteredItem = favorite.filter(
+      const filteredItem = items?.filter(
         (value, index, self) =>
           index ===
           self.findIndex((t) => {
@@ -24,11 +25,15 @@ export const FavoriteSlice = createSlice({
       );
 
       state.favorite = filteredItem;
-      console.log(state.favorite)
+    },
+    removeFavorite: (state, { payload }) => {
+      state.favorite = state.favorite.filter((item) => item._id !== payload);
+
+      
     },
   },
 });
 
-export const { addFavorite } = FavoriteSlice.actions;
+export const { addFavorite, removeFavorite } = FavoriteSlice.actions;
 
 export default FavoriteSlice.reducer;

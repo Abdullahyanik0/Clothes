@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { removeCard, increase, decrease } from "../../redux/CardSlice";
+import { removeFavorite } from "../../redux/FavoriteSlice";
 import { useDispatch } from "react-redux";
 
-const BasketCard = ({
+const FavoriteCard = ({
   title,
   price,
   name,
@@ -34,21 +34,9 @@ const BasketCard = ({
             {name}
           </p>
 
-          <div className="flex px-2 justify-between items-center">
-            <div>
-              <div className="flex gap-x-4 text-lg">
-                <button onClick={() => dispatch(decrease({ id, quantity }))}>
-                  -
-                </button>
-                <p>{quantity}</p>
-                <button onClick={() => dispatch(increase({ id, quantity }))}>
-                  +
-                </button>
-              </div>
-            </div>
-
+          <div className="flex px-2 justify-end items-center">
             <DeleteOutlineIcon
-              onClick={() => dispatch(removeCard(id))}
+              onClick={() => dispatch(removeFavorite(id))}
               fontSize="large"
               className="cursor-pointer"
             />
@@ -61,4 +49,4 @@ const BasketCard = ({
   );
 };
 
-export default BasketCard;
+export default FavoriteCard;

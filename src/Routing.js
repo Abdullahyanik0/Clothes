@@ -46,12 +46,12 @@ const Routing = () => {
     {
       path: "basket",
       element: <Basket />,
-      isAuthProtected: true,
+      isAuthProtected: false,
     },
     {
       path: "favorite",
       element: <Favorite />,
-      isAuthProtected: true,
+      isAuthProtected: false,
     },
     { path: "*", element: <PageNotFound /> },
   ];

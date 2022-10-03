@@ -7,10 +7,15 @@ import { Link } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function SimpleBottomNavigation() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const color = localStorage.getItem("color");
+
+  const card = useSelector((state) => state.card.items);
+  const favorite = useSelector((state) => state.favorite.favorite);
 
   return (
     <div className="bottom-0  fixed w-full border-t-2 md:!hidden z-20">
@@ -30,14 +35,42 @@ export default function SimpleBottomNavigation() {
           />
           <BottomNavigationAction
             className={`${color}`}
-            label={<Link to="/basket">Basket</Link>}
+            label={
+              <Link to="/basket">
+                <div>
+                  {card.length ? (
+                    <div className="rounded-full flex justify-center items-center w-4 h-4 absolute top-0 right-8 text-white bg-red-600">
+                      <p>{card.length}</p>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>{" "}
+                Basket
+              </Link>
+            }
             icon={<ShoppingBasketIcon />}
           />
+
           <BottomNavigationAction
             className={`${color}`}
-            label={<Link to="/basket">Favorite</Link>}
+            label={
+              <Link to="/favorite">
+                <div>
+                  {favorite.length ? (
+                    <div className="rounded-full flex justify-center items-center w-4 h-4 absolute top-0 right-8 text-white bg-red-600">
+                      <p>{favorite.length}</p>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>{" "}
+                Favorite
+              </Link>
+            }
             icon={<FavoriteIcon />}
           />
+
           <BottomNavigationAction
             className={`${color}`}
             label={<Link to="/user">User</Link>}
