@@ -44,7 +44,7 @@ const Search = () => {
               type="text"
             />
 
-            <BsSearch size={20} className="absolute top-3 right-2 " />
+            <BsSearch size={21} className="absolute top-3 right-2 " />
           </div>
         </Box>
       </Modal>
