@@ -13,16 +13,12 @@ const CategoryPage = () => {
   const url = `https://ecommerceappexpress.herokuapp.com/api/product/?categories=${categories.id}`;
   const token = localStorage.getItem("token");
 
-
   const fetchData = () => {
-    setLoading(true);
     axios
       .get(url, { headers: { token } })
       .then(function (response) {
         // handle success
         setData(response.data.result.data);
-
-        setLoading(false);
       })
       .catch(function (error) {
         // handle error
@@ -34,8 +30,10 @@ const CategoryPage = () => {
   };
 
   useEffect(() => {
-    fetchData()
-  }, [params]);
+    setLoading(true);
+    fetchData();
+    setLoading(false);
+  }, [categories]);
   return isLoading ? (
     <Layout>
       <Loading />

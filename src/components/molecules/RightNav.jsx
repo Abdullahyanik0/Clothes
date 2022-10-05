@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { nanoid } from "@reduxjs/toolkit";
-import { Avatar } from "@mui/material";
+
+import Search from "components/atoms/Search";
 
 const Ul = styled.ul`
   list-style: none;
@@ -31,7 +32,6 @@ const Ul = styled.ul`
     }
   }
 `;
-const user = localStorage.getItem("user");
 
 const RightNav = ({ open }) => {
   const navbar = [
@@ -46,6 +46,7 @@ const RightNav = ({ open }) => {
 
   return (
     <Ul open={open} className="z-10 ml-40  ">
+      <Search />
       {navbar.map((nav) => (
         <NavLink key={nav.id} to={nav.link}>
           <li className=" hover:underline-offset-4 hover:underline ease-in duration-200 rounded-lg ">

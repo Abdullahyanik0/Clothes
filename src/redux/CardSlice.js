@@ -42,8 +42,17 @@ export const CardSlice = createSlice({
     decrease: (state, { payload }) => {
       const id = payload.id;
       const quantity = payload.quantity;
+
       const item = state.items.find((item) => item._id === id);
-      item.quantity = Number(quantity) - 1;
+      if (item.quantity > 0) {
+        item.quantity = Number(quantity) - 1;
+      }
+      if (item.quantity < 1) {
+        state.items = state.items.filter((item) => item._id !== id);
+      }
+    },
+    removeState: (state) => {
+      state.items = [];
     },
 
     changeHeaderColor: {
@@ -59,7 +68,13 @@ export const CardSlice = createSlice({
   },
 });
 
-export const { changeHeaderColor, addCard, removeCard, increase, decrease } =
-  CardSlice.actions;
+export const {
+  changeHeaderColor,
+  addCard,
+  removeCard,
+  increase,
+  decrease,
+  removeState,
+} = CardSlice.actions;
 
 export default CardSlice.reducer;
