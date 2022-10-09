@@ -3,11 +3,12 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { MdKeyboardArrowDown, MdOutlineShoppingBasket } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
 
 const NavHeader = () => {
   const card = useSelector((state) => state.card.items);
   const favorite = useSelector((state) => state.favorite.favorite);
-
+  const token = localStorage.getItem("token");
 
   return (
     <div className="h-[43px]  text-gray-600 flex xxm:hidden xxs:hidden  justify-between items-center mx-4 px-12 font-bold text-[12px]">
@@ -46,7 +47,17 @@ const NavHeader = () => {
           Tr/Tr
           <MdKeyboardArrowDown size={20} />
         </div>
-        <NavLink to="/singin">Sign In</NavLink>
+        <NavLink to="/user">
+          {token ? (
+            <Avatar
+              className="!w-6 !h-6"
+              alt="Cindy Baker"
+              src="https://img-s3.onedio.com/id-61f6b7125866d7ab37b83ac2/rev-0/w-620/f-jpg/s-42dc3dd87c46a2e3227d7bdffad0adc161bacd11.jpg"
+            />
+          ) : (
+            "Sign In"
+          )}
+        </NavLink>
         <div className="relative">
           <NavLink to="/basket">
             {card.length ? (

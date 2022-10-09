@@ -1,53 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import Box from "@mui/material/Box";
-
-import Modal from "@mui/material/Modal";
+import { useEffect } from "react";
+import axios from "axios";
+import FavoriteCard from "components/molecules/FavoriteCard";
 
 const Search = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [data, setData] = useState([]);
+  const [datas, setDatas] = useState([]);
+  const [search, setSearch] = useState("");
+  console.log(datas)
 
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
+  useEffect(() => {
+    const url = `https://ecommerceappexpress.herokuapp.com/api/product`;
+    const token = localStorage.getItem("token");
+    const fetchData = async () => {
+      await axios
+
+        .get(url, { headers: { token } })
+        .then(function (response) {
+          setData(response.data.result.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const filteredItems = data.filter((item) => {
+      if (search.length < 0) {
+        setDatas("");
+      } else {
+        return item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+      }
+      return item;
+    });
+    setDatas(filteredItems);
+  }, [search, data]);
+
   return (
     <div className="w-72  flex items-center relative">
-      <input
-        onClick={handleOpen}
-        className="border-[1px] w-full border-[#bbb] rounded-xs p-2 !text-black  !font-medium text-base"
-        placeholder="Search"
-        type="text"
-      />
+      <div className="relative">
+        <input
+          className="border-[1px] w-full border-[#bbb] rounded-xs p-2 !text-black  !font-medium text-base"
+          placeholder="Search"
+          type="text"
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+        />
 
-      <BsSearch size={20} className="absolute  right-2 " />
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div className="relative">
-            <input
-              className="border-[1px] w-full border-[#bbb] rounded-xs p-2 !text-black  !font-medium text-base"
-              placeholder="Search"
-              type="text"
-            />
-
-            <BsSearch size={21} className="absolute top-3 right-2 " />
-          </div>
-        </Box>
-      </Modal>
+        <BsSearch size={21} className="absolute top-3 right-2 " />
+      </div>
+      <div className="absolute top-10 -left-2 bg-white  text-black">
+        {datas?.map((dat) => (
+          <FavoriteCard
+            key={dat?._id}
+            id={dat?._id}
+            name={dat?.name}
+            imgUrl={dat?.imgUrl}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -2,13 +2,10 @@ import React from "react";
 import Layout from "Layout/Layout";
 import HeroSlider from "components/molecules/HeroSlider";
 
-
 import FavoriteBoard from "../components/molecules/FavoriteBoard";
 
 const Favorite = () => {
-  
-
-  return  (
+  return (
     <Layout>
       <FavoriteBoard />
       <div className="text-center my-4">

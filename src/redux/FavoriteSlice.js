@@ -9,12 +9,11 @@ export const FavoriteSlice = createSlice({
     addFavorite: (state, { payload: { data } }) => {
       const items = state.favorite?.map((item) =>
         item?._id === data?._id
-          ? { ...item, selected: item.selected === true ? false : true }
-          : item
+          ? { ...item, selected: item.selected === false }
+          : { ...item, selected: item.selected === true }
       );
 
       items.push(data);
-    
 
       const filteredItem = items?.filter(
         (value, index, self) =>
@@ -28,7 +27,9 @@ export const FavoriteSlice = createSlice({
     },
     removeFavorite: (state, { payload }) => {
       state.favorite = state.favorite.filter((item) => item._id !== payload);
-
+      state?.favorite.map((item) =>
+        payload === item?._id ? (item.selected = false) : ""
+      );
       
     },
   },

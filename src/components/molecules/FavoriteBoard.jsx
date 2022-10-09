@@ -5,24 +5,26 @@ import FavoriteCard from "./FavoriteCard";
 
 const FavoriteBoard = () => {
   const items = useSelector((state) => state.favorite.favorite);
-
+  console.log(items);
 
   return items.length > 0 ? (
-    <div className="mt-12">
-      {items?.map((item) => (
-        <FavoriteCard
-          key={item?._id}
-          price={item?.price}
-          categories={item?.categories}
-          selected={item?.selected}
-          imgUrl={item?.imgUrl}
-          name={item?.name}
-          title={item?.title}
-          subtitle={item?.subtitle}
-          quantity={item?.quantity}
-          id={item?._id}
-        />
-      ))}
+    <div className="xl:flex xl:justify-center ">
+      <div className="mt-12 xl:w-8/12 ">
+        {items?.map((item) => (
+          <FavoriteCard
+            key={item?._id}
+            price={item?.price}
+            categories={item?.categories}
+            selected={item?.selected}
+            imgUrl={item?.imgUrl}
+            name={item?.name}
+            title={item?.title}
+            subtitle={item?.subtitle}
+            quantity={item?.quantity}
+            id={item?._id}
+          />
+        ))}
+      </div>
     </div>
   ) : (
     <div className="text-center mb-24 mt-8">

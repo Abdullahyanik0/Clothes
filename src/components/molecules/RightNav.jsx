@@ -46,7 +46,9 @@ const RightNav = ({ open }) => {
 
   return (
     <Ul open={open} className="z-10 ml-40  ">
-      <Search />
+      <div className="lg:hidden">
+        <Search />
+      </div>
       {navbar.map((nav) => (
         <NavLink key={nav.id} to={nav.link}>
           <li className=" hover:underline-offset-4 hover:underline ease-in duration-200 rounded-lg ">

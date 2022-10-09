@@ -20,9 +20,9 @@ const FavoriteCard = ({
   };
   const dispatch = useDispatch();
 
-  return (
+  return selected ? (
     <div className="flex shadow-xl    text-sm font-semibold mb-6 ">
-      <div className="flex gap-x-2 ">
+      <div className="flex w-full justify-between gap-x-2 ">
         <img
           onClick={handleClick}
           className="w-32 h-40 rounded-md cursor-pointer"
@@ -46,6 +46,8 @@ const FavoriteCard = ({
         </div>
       </div>
     </div>
+  ) : (
+    ""
   );
 };
 

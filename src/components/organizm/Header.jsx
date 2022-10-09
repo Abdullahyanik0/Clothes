@@ -2,12 +2,12 @@ import React from "react";
 import logo from "../../images/logo.png";
 import Navbar from "../molecules/Navbar";
 import NavHeader from "../molecules/NavHeader";
-import { BsSearch } from "react-icons/bs";
 import DarkButton from "../atoms/DarkButton";
 import { useSelector, useDispatch } from "react-redux";
 import { changeHeaderColor } from "redux/CardSlice";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Search from "components/atoms/Search";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,6 @@ const Header = () => {
           </Link>
           <Navbar />
           <div className="absolute flex  items-center right-[330px] xxl:right-12 xxl:pt-3">
-            <p>Dark Mode</p>
             <DarkButton
               checked={checked}
               {...label}
@@ -38,15 +37,10 @@ const Header = () => {
               onClick={handleChange}
             />
           </div>
-          <div className="w-72 xxs:hidden xxm:!hidden flex items-center relative">
-            <input
-              className="border-[1px] w-full border-[#bbb] rounded-xs p-2 !text-black  !font-medium text-base"
-              placeholder="Search"
-              type="text"
-            />
-
-            <BsSearch size={20} className="absolute  right-2 " />
+          <div className="xxm:hidden">
+            <Search />
           </div>
+          
         </div>
       </div>
     </div>

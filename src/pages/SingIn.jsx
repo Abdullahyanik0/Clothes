@@ -14,8 +14,7 @@ const SingIn = () => {
     password: Yup.string()
       .required("No password provided.")
       .min(6, "Password is too short - should be 6 chars minimum.")
-      .max(10, "Password is too long - should be 10 chars maximum.")
-      .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+      .max(10, "Password is too long - should be 10 chars maximum."),
     fullName: Yup.string().required("Required."),
   });
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/register";
@@ -40,7 +39,6 @@ const SingIn = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
-             
               axios
                 .post(url, values)
                 .then(function (response) {

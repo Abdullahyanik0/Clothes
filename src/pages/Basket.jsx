@@ -4,9 +4,7 @@ import HeroSlider from "components/molecules/HeroSlider";
 
 import BasketBoard from "components/molecules/BasketBoard";
 
-
 const Basket = () => {
-  
   return (
     <Layout>
       <BasketBoard />

@@ -43,7 +43,7 @@ const User = () => {
 
   return token ? (
     <LoginLayout>
-      <div className="flex justify-center items-center flex-col xxs:mx-4 ">
+      <div className="flex justify-center items-center  flex-col xxs:mx-4 ">
         <div className="w-[600px] xxs:w-full ">
           <div className=" font-semibold items-center  ml-2 flex justify-between">
             <p className="text-xl ">User: {user}</p>
@@ -110,7 +110,7 @@ const User = () => {
     </LoginLayout>
   ) : (
     <LoginLayout>
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-[70px]">
         <div className="flex flex-col justify-center w-3/12 xxs:w-9/12 items-center">
           <div className="flex justify-between w-full text-3xl my-8">
             <h1 className="">Sign in</h1>

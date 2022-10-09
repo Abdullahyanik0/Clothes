@@ -64,7 +64,7 @@ export default function SimpleBottomNavigation() {
                   ) : (
                     ""
                   )}
-                </div>{" "}
+                </div>
                 Favorite
               </Link>
             }

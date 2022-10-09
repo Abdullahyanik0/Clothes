@@ -14,8 +14,9 @@ export const CardSlice = createSlice({
           ? { ...item, quantity: Number(item.quantity) + 1 }
           : item
       );
+      console.log(items);
 
-      items.push(data);
+      items.push({ ...data, quantity: Number(data.quantity) + 1 });
 
       const filteredItem = items?.filter(
         (value, index, self) =>
@@ -28,26 +29,21 @@ export const CardSlice = createSlice({
       state.items = filteredItem;
     },
 
-    removeCard: (state, action) => {
-      const id = action.payload;
+    removeCard: (state, { payload: { id } }) => {
       state.items = state.items.filter((item) => item._id !== id);
     },
-    increase: (state, { payload }) => {
-      const id = payload.id;
-      const quantity = payload.quantity;
+    increase: (state, { payload: { id, quantity } }) => {
       const item = state.items.find((item) => item._id === id);
       item.quantity = Number(quantity) + 1;
     },
 
-    decrease: (state, { payload }) => {
-      const id = payload.id;
-      const quantity = payload.quantity;
-
+    decrease: (state, { payload: { id, quantity } }) => {
       const item = state.items.find((item) => item._id === id);
+
       if (item.quantity > 0) {
         item.quantity = Number(quantity) - 1;
       }
-      if (item.quantity < 1) {
+      if (item.quantity === 0) {
         state.items = state.items.filter((item) => item._id !== id);
       }
     },

@@ -10,7 +10,7 @@ const LoginLayout = ({ children }) => {
   return (
     <div className={`${color} `}>
       <LoginHeader />
-      <div className="mb-12">{children}</div>
+      <div className="pb-[135px]">{children}</div>
       <Footer />
       <BottomBar />
     </div>

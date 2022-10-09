@@ -21,15 +21,15 @@ const BasketCard = ({
   const dispatch = useDispatch();
 
   return (
-    <div className="flex shadow-xl    text-sm font-semibold mb-6 ">
-      <div className="flex gap-x-2 ">
+    <div  className="flex shadow-xl w-full   text-sm font-semibold mb-6 ">
+      <div className="flex w-full justify-between gap-x-2  ">
         <img
           onClick={handleClick}
           className="w-32 h-40 rounded-md cursor-pointer"
           src={imgUrl}
           alt=""
         />
-        <div className="flex flex-col justify-between  xxs:w-[260px]">
+        <div className="flex flex-col justify-between  xxs:w-[260px]  ">
           <p onClick={handleClick} className=" mt-4 text-base cursor-pointer  ">
             {name}
           </p>
@@ -48,7 +48,7 @@ const BasketCard = ({
             </div>
 
             <DeleteOutlineIcon
-              onClick={() => dispatch(removeCard(id))}
+              onClick={() => dispatch(removeCard({ id }))}
               fontSize="large"
               className="cursor-pointer"
             />
