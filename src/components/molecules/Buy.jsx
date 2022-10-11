@@ -34,8 +34,11 @@ const Buy = () => {
   const notify = () => toast("Your order has been confirmed.");
   const multipleFunc = () => {
     notify();
-    dispatch(removeState());
-    handleClose();
+
+    setTimeout(() => {
+      handleClose();
+      dispatch(removeState());
+    }, 2000);
   };
 
   return (
