@@ -14,7 +14,6 @@ export const CardSlice = createSlice({
           ? { ...item, quantity: Number(item.quantity) + 1 }
           : item
       );
-      console.log(items);
 
       items.push({ ...data, quantity: Number(data.quantity) + 1 });
 

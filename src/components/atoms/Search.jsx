@@ -8,7 +8,7 @@ const Search = () => {
   const [data, setData] = useState([]);
   const [datas, setDatas] = useState([]);
   const [search, setSearch] = useState("");
-  console.log(datas)
+
 
   useEffect(() => {
     const url = `https://ecommerceappexpress.herokuapp.com/api/product`;

@@ -34,7 +34,7 @@ const User = () => {
   const user = localStorage.getItem("user");
 
   const textStyle =
-    "flex gap-3 items-center  text-2xl hover:underline underline-offset-4  mt-4";
+    "flex gap-3 items-center cursor-pointer text-2xl hover:underline underline-offset-4  mt-4";
 
   const handleRemove = () => {
     localStorage.removeItem("token");

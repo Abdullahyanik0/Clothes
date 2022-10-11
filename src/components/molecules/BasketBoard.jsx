@@ -1,39 +1,46 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import BasketCard from "./BasketCard";
-import { removeState } from "redux/CardSlice";
-import { useDispatch } from "react-redux";
+
+import { useState, useEffect } from "react";
 
 const BasketBoard = () => {
-  const dispatch = useDispatch();
+  const [totals, setTotals] = useState([]);
   const items = useSelector((state) => state.card.items);
-  console.log(items);
+
+  const total = items?.map((it) => it.price * it.quantity);
+  useEffect(() => {
+    const CountTotal = () => {
+      const totaled = items.reduce(function (res, item) {
+        return res + item.price * item.quantity;
+      }, 0);
+      setTotals(totaled);
+      console.log(totaled);
+    };
+    CountTotal();
+  }, [total]);
 
   return items.length > 0 ? (
-    <div className="xl:flex xl:justify-center ">
-      <div className="mt-12 xl:w-8/12">
-        {items?.map((item) => (
-          <BasketCard
-            key={item?._id}
-            price={item?.price}
-            categories={item?.categories}
-            selected={item?.selected}
-            imgUrl={item?.imgUrl}
-            name={item?.name}
-            title={item?.title}
-            subtitle={item?.subtitle}
-            quantity={item?.quantity}
-            id={item?._id}
-          />
-        ))}
-        <div className="flex justify-end ">
-          <button
-            onClick={() => dispatch(removeState())}
-            className="bg-[#3d7c7d]   w-48 rounded hover:bg-opacity-90 my-4 ease-in duration-200 h-14 text-white text-xl font-semibold"
-          >
-            Clear Cart
-          </button>
+    <div className="flex  justify-center ">
+      <div className="xl:w-full flex-col items-center  flex xl:justify-center ">
+        <div className="mt-12 xl:w-8/12 justify-center items-center flex  flex-col  ">
+          {items?.map((item) => (
+            <BasketCard
+              key={item?._id}
+              price={item?.price}
+              categories={item?.categories}
+              selected={item?.selected}
+              imgUrl={item?.imgUrl}
+              name={item?.name}
+              title={item?.title}
+              subtitle={item?.subtitle}
+              quantity={item?.quantity}
+              id={item?._id}
+            />
+          ))}
+        </div>
+        <div className="font-semibold text-center text-xl ">
+          Total: $ {Math.floor(totals)}
         </div>
       </div>
     </div>

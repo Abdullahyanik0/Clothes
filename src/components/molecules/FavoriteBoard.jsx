@@ -5,7 +5,7 @@ import FavoriteCard from "./FavoriteCard";
 
 const FavoriteBoard = () => {
   const items = useSelector((state) => state.favorite.favorite);
-  console.log(items);
+
 
   return items.length > 0 ? (
     <div className="xl:flex xl:justify-center ">

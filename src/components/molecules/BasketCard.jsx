@@ -21,11 +21,11 @@ const BasketCard = ({
   const dispatch = useDispatch();
 
   return (
-    <div  className="flex shadow-xl w-full   text-sm font-semibold mb-6 ">
-      <div className="flex w-full justify-between gap-x-2  ">
+    <div className="flex shadow-xl w-full   text-sm font-semibold mb-6 ">
+      <div className="flex w-full justify-between gap-x-2 xxs:px-5 px-12 ">
         <img
           onClick={handleClick}
-          className="w-32 h-40 rounded-md cursor-pointer"
+          className="w-32 h-40  rounded-md cursor-pointer"
           src={imgUrl}
           alt=""
         />
