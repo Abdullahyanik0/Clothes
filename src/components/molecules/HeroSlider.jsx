@@ -11,18 +11,22 @@ import Loading from "../atoms/Loading";
 const HeroSlider = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [error, setError] = useState("");
   const token = localStorage.getItem("token");
 
   const url = "https://ecommerceappexpress.herokuapp.com/api/product";
-  const fetchData = () => {
-    axios
+  const fetchData = async () => {
+    await axios
       .get(url, { headers: { token } })
       .then(function (response) {
         // handle success
         setData(response.data.result.data);
       })
       .catch(function (error) {
-        console.log(error);
+        /*  setIsLoading(true); */
+        setError(error.response.data);
+       
+        setIsLoading(false);
       });
   };
   useEffect(() => {
@@ -36,7 +40,7 @@ const HeroSlider = () => {
       randomIndex;
 
     // While there remain elements to shuffle.
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
       // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
@@ -57,6 +61,7 @@ const HeroSlider = () => {
     <Loading />
   ) : (
     <div className="  text-black">
+      <div>{error ? error : ""}</div>
       <Swiper
         breakpoints={{
           500: {

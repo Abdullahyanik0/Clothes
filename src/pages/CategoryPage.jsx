@@ -8,7 +8,8 @@ import Loading from "components/atoms/Loading";
 const CategoryPage = () => {
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
-  let params = useParams();
+  const [error, setError] = useState("");
+  const params = useParams();
   const categories = params;
   const url = `https://ecommerceappexpress.herokuapp.com/api/product/?categories=${categories.id}`;
   const token = localStorage.getItem("token");
@@ -17,15 +18,12 @@ const CategoryPage = () => {
     axios
       .get(url, { headers: { token } })
       .then(function (response) {
-        // handle success
         setData(response.data.result.data);
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
-      })
-      .then(function () {
-        // always executed
+        setLoading(false);
+        setError(error.response.data);
       });
   };
 
@@ -40,6 +38,7 @@ const CategoryPage = () => {
     </Layout>
   ) : (
     <Layout>
+      {error ? error : ""}
       <div className="grid grid-cols-4 gap-12 text-black xxs:grid-cols-2 xxs:gap-y-4 mb-20">
         {data?.map((data) => (
           <Card

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 const BasketBoard = () => {
   const [totals, setTotals] = useState([]);
+
   const items = useSelector((state) => state.card.items);
 
   const total = items?.map((it) => it.price * it.quantity);
@@ -14,8 +15,8 @@ const BasketBoard = () => {
       const totaled = items.reduce(function (res, item) {
         return res + item.price * item.quantity;
       }, 0);
-      setTotals(totaled);
-      console.log(totaled);
+      setTotals(totaled.toFixed(2));
+   
     };
     CountTotal();
   }, [total]);
@@ -40,7 +41,7 @@ const BasketBoard = () => {
           ))}
         </div>
         <div className="font-semibold text-center text-xl ">
-          Total: $ {Math.floor(totals)}
+          Total: $ {totals}
         </div>
       </div>
     </div>

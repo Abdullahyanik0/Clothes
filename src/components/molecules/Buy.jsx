@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import toast, { Toaster } from "react-hot-toast";
@@ -6,6 +5,9 @@ import { useState } from "react";
 import BasketBoard from "./BasketBoard";
 import { removeState } from "redux/CardSlice";
 import { useDispatch } from "react-redux";
+import React, { useContext } from "react";
+import { ThemeContext } from "context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -16,12 +18,15 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3,
 };
 
 const Buy = () => {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
+
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -33,6 +38,12 @@ const Buy = () => {
 
   const notify = () => toast("Your order has been confirmed.");
   const multipleFunc = () => {
+    if (!token) {
+      alert("please login");
+      setTimeout(() => {
+        navigate("/user");
+      }, 3000);
+    }
     notify();
 
     setTimeout(() => {
@@ -55,16 +66,21 @@ const Buy = () => {
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
+        className="!h-full overflow-auto "
       >
-        <Box className="flex flex-col !p-1 " sx={{ ...style, width: 11 / 12 }}>
-          <BasketBoard />
-          <div className="flex justify-center">
-            <button
-              className="bg-[#3d7c7d] w-full  xl:w-4/12 rounded hover:bg-opacity-90 my-4 ease-in duration-200 h-14 text-white text-xl font-semibold"
-              onClick={multipleFunc}
-            >
-              Buy
-            </button>
+        <Box sx={{ ...style, width: 11 / 12 }} className="!border-0 mt-48">
+          <div
+            className={`${darkMode ? "bg-[#373739] " : ""} flex flex-col !p-1`}
+          >
+            <BasketBoard />
+            <div className="flex justify-center">
+              <button
+                className="bg-[#3d7c7d] w-full  xl:w-4/12 rounded hover:bg-opacity-90 my-4 ease-in duration-200 h-14 text-white text-xl font-semibold"
+                onClick={multipleFunc}
+              >
+                Buy
+              </button>
+            </div>
           </div>
         </Box>
       </Modal>

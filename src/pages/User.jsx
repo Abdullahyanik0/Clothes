@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginLayout from "Layout/LoginLayout";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -6,7 +6,7 @@ import { AiOutlineLock } from "react-icons/ai";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import HeroSlider from "components/molecules/HeroSlider";
@@ -19,13 +19,15 @@ import InfoIcon from "@mui/icons-material/Info";
 import SellIcon from "@mui/icons-material/Sell";
 
 const User = () => {
+  const [error, setError] = useState("");
+
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
       .required("No password provided.")
       .min(6, "Password is too short - should be 6 chars minimum.")
       .max(10, "Password is too long - should be 10 chars maximum.")
-      .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+      
   });
 
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/login";
@@ -133,6 +135,7 @@ const User = () => {
                   navigate("/");
                 })
                 .catch(function (error) {
+                  setError(error.response.data.msg);
                   console.log(error);
                 });
             }}
@@ -163,6 +166,7 @@ const User = () => {
                     label=" Remember Me"
                   />
                 </FormGroup>
+                <div>{error ? error : ""}</div>
 
                 <button
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
@@ -173,9 +177,9 @@ const User = () => {
                 </button>
                 <h1 className="text-xl font-semibold xxs:text-base flex xxs:gap-x-2 gap-x-1">
                   Don't have an account?
-                  <a className="text-[#3d7c7d] font-semibold" href="/singin">
+                  <Link className="text-[#3d7c7d] font-semibold" to="/singin">
                     Create one now.
-                  </a>
+                  </Link>
                 </h1>
               </Form>
             )}

@@ -21,7 +21,7 @@ const FavoriteCard = ({
   const dispatch = useDispatch();
 
   return selected ? (
-    <div className="flex shadow-xl    text-sm font-semibold mb-6 ">
+    <div className="flex shadow-xl  xl:px-12 px-5  text-sm font-semibold mb-6 ">
       <div className="flex w-full justify-between gap-x-2 ">
         <img
           onClick={handleClick}

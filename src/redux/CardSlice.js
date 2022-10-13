@@ -5,7 +5,7 @@ export const CardSlice = createSlice({
   initialState: {
     items: [],
 
-    headerColor: localStorage.getItem("color"),
+
   },
   reducers: {
     addCard: (state, { payload: { data } }) => {
@@ -50,21 +50,12 @@ export const CardSlice = createSlice({
       state.items = [];
     },
 
-    changeHeaderColor: {
-      reducer: (state) => {
-        if (state.headerColor === "!bg-white") {
-          state.headerColor = "!bg-[#1B1A17] !bg-opacity-90 !text-white";
-        } else {
-          state.headerColor = "!bg-white";
-        }
-        localStorage.setItem("color", state.headerColor);
-      },
-    },
+   
   },
 });
 
 export const {
-  changeHeaderColor,
+
   addCard,
   removeCard,
   increase,

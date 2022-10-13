@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Basket = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.card.items);
-  console.log(items);
+
   return (
     <Layout>
       <BasketBoard />

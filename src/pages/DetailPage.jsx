@@ -7,14 +7,16 @@ import Loading from "components/atoms/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "redux/CardSlice";
 import Size from "../components/atoms/Size";
-import Comments from "components/atoms/Comments";
+
 import axios from "axios";
 import { addFavorite, removeFavorite } from "redux/FavoriteSlice";
 import toast, { Toaster } from "react-hot-toast";
+import CommentsForm from "components/molecules/CommentsForm";
 
 const DetailPage = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   const params = useParams();
@@ -28,6 +30,7 @@ const DetailPage = () => {
   useEffect(() => {
     const url = `https://ecommerceappexpress.herokuapp.com/api/product/${detail?.id}`;
     const token = localStorage.getItem("token");
+
     const fetchData = async () => {
       setLoading(true);
       await axios
@@ -35,10 +38,13 @@ const DetailPage = () => {
         .get(url, { headers: { token } })
         .then(function (response) {
           setData(response.data.product.shift());
+
           setLoading(false);
         })
         .catch(function (error) {
           console.log(error);
+          setLoading(false);
+          setError(error.response.data);
         });
     };
 
@@ -62,6 +68,7 @@ const DetailPage = () => {
     </Layout>
   ) : (
     <Layout>
+      {error ? error : ""}
       <div className="flex justify-center xxs:flex-col  my-12 gap-x-16">
         <div className="w-96 xxs:w-full relative">
           <p className="font-semibold py-2 xxs:block mb-3 md:hidden  ">
@@ -105,7 +112,16 @@ const DetailPage = () => {
           </div>
         </div>
       </div>
-      <Comments />
+
+      <CommentsForm />
+      {data.comments?.map((com) => (
+        <div key={data?._id}>
+          {com?.comment}
+
+          {com?.star}
+        </div>
+      ))}
+
       <Toaster
         position="bottom-right "
         containerClassName="xxs:mb-12"
