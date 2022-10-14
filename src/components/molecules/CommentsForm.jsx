@@ -10,7 +10,7 @@ const CommentsForm = () => {
   const url = `https://ecommerceappexpress.herokuapp.com/api/product/${detail?.id}`;
   const token = localStorage.getItem("token");
   return (
-    <div>
+    <div className="py-2">
       <h1>Comment</h1>
       <Formik
         initialValues={{

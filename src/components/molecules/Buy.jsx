@@ -5,8 +5,7 @@ import { useState } from "react";
 import BasketBoard from "./BasketBoard";
 import { removeState } from "redux/CardSlice";
 import { useDispatch } from "react-redux";
-import React, { useContext } from "react";
-import { ThemeContext } from "context/ThemeContext";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const style = {
@@ -21,9 +20,6 @@ const style = {
 };
 
 const Buy = () => {
-  const theme = useContext(ThemeContext);
-  const darkMode = theme.state.darkMode;
-
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -69,18 +65,14 @@ const Buy = () => {
         className="!h-full overflow-auto "
       >
         <Box sx={{ ...style, width: 11 / 12 }} className="!border-0 mt-48">
-          <div
-            className={`${darkMode ? "bg-[#373739] " : ""} flex flex-col !p-1`}
-          >
-            <BasketBoard />
-            <div className="flex justify-center">
-              <button
-                className="bg-[#3d7c7d] w-full  xl:w-4/12 rounded hover:bg-opacity-90 my-4 ease-in duration-200 h-14 text-white text-xl font-semibold"
-                onClick={multipleFunc}
-              >
-                Buy
-              </button>
-            </div>
+          <BasketBoard />
+          <div className="flex justify-center">
+            <button
+              className="bg-[#3d7c7d] w-full  xl:w-4/12 rounded hover:bg-opacity-90 my-4 ease-in duration-200 h-14 text-white text-xl font-semibold"
+              onClick={multipleFunc}
+            >
+              Buy
+            </button>
           </div>
         </Box>
       </Modal>

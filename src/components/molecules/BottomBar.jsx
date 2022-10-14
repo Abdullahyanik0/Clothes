@@ -18,7 +18,7 @@ export default function SimpleBottomNavigation() {
   const favorite = useSelector((state) => state.favorite.favorite);
 
   return (
-    <div className="bottom-0  fixed w-full border-t-2 md:!hidden z-20">
+    <div className="bottom-0  fixed w-full  md:!hidden z-20">
       <Box>
         <BottomNavigation
           className={`${color}`}
