@@ -7,55 +7,13 @@ import Card from "../atoms/Card";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../atoms/Loading";
+import useFetch from "hooks/useFetch";
 
 const HeroSlider = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState([]);
   const [error, setError] = useState("");
-  const token = localStorage.getItem("token");
-
   const url = "https://ecommerceappexpress.herokuapp.com/api/product";
-  const fetchData = async () => {
-    await axios
-      .get(url, { headers: { token } })
-      .then(function (response) {
-        // handle success
-        setData(response.data.result.data);
-      })
-      .catch(function (error) {
-        /*  setIsLoading(true); */
-        setError(error.response.data);
-       
-        setIsLoading(false);
-      });
-  };
-  useEffect(() => {
-    setIsLoading(true);
-    fetchData();
-    setIsLoading(false);
-  }, []);
-
-  const shuffle = (array) => {
-    let currentIndex = array.length,
-      randomIndex;
-
-    // While there remain elements to shuffle.
-    while (currentIndex !== 0) {
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-
-    return array;
-  };
-
-  shuffle(data);
+  const [data] = useFetch(url);
 
   return isLoading ? (
     <Loading />

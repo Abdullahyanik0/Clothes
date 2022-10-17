@@ -32,7 +32,7 @@ const Order = () => {
 
   return (
     <Layout>
-      <div className="pb-36">
+      <div className="h-screen  ">
         <h1 className="text-center text-2xl font-semibold my-4">Last Orders</h1>
         {order4.map((or) => (
           <Card

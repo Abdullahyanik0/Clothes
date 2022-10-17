@@ -12,11 +12,10 @@ const CategoryPage = () => {
   const params = useParams();
   const categories = params;
   const url = `https://ecommerceappexpress.herokuapp.com/api/product/?categories=${categories.id}`;
-  const token = localStorage.getItem("token");
 
   const fetchData = () => {
     axios
-      .get(url, { headers: { token } })
+      .get(url)
       .then(function (response) {
         setData(response.data.result.data);
       })

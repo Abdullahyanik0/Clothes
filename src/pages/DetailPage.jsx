@@ -31,13 +31,13 @@ const DetailPage = () => {
 
   useEffect(() => {
     const url = `https://ecommerceappexpress.herokuapp.com/api/product/${detail?.id}`;
-    const token = localStorage.getItem("token");
+
 
     const fetchData = async () => {
       setLoading(true);
       await axios
 
-        .get(url, { headers: { token } })
+        .get(url)
         .then(function (response) {
           setData(response.data.product.shift());
 
