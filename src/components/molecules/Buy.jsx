@@ -4,9 +4,10 @@ import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import BasketBoard from "./BasketBoard";
 import { removeState } from "redux/CardSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -22,7 +23,9 @@ const style = {
 const Buy = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-
+  const orderm = useSelector((state) => state.card.items);
+  const basketitem = orderm.map((item) => item);
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -31,21 +34,44 @@ const Buy = () => {
     setOpen(false);
   };
   const dispatch = useDispatch();
+  const url = "https://ecommerceappexpress.herokuapp.com/api/order";
 
   const notify = () => toast("Your order has been confirmed.");
+  const notify2 = () => toast("Error.");
+
   const multipleFunc = () => {
     if (!token) {
       alert("please login");
       setTimeout(() => {
-        navigate("/user");
-      }, 3000);
+        navigate("/user", { state: { name: location.pathname } });
+      }, 1000);
+    } else {
+      setTimeout(async () => {
+        await axios({
+          method: "post",
+          url: url,
+          data: {
+            orders: [
+              {
+                prodId: basketitem,
+              },
+            ],
+          },
+          headers: { token },
+        })
+          .then((response) => {
+            console.log(response);
+            notify();
+            setTimeout(() => {
+              dispatch(removeState());
+            }, 2000);
+          })
+          .catch((error) => {
+            console.log(error);
+            notify2();
+          });
+      }, 1000);
     }
-    notify();
-
-    setTimeout(() => {
-      handleClose();
-      dispatch(removeState());
-    }, 2000);
   };
 
   return (
@@ -64,7 +90,7 @@ const Buy = () => {
         aria-describedby="parent-modal-description"
         className="!h-full overflow-auto "
       >
-        <Box sx={{ ...style, width: 11 / 12 }} className="!border-0 mt-48">
+        <Box sx={{ ...style, width: 11 / 12 }} className="!border-0 ">
           <BasketBoard />
           <div className="flex justify-center">
             <button

@@ -7,11 +7,11 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 const SingIn = () => {
   const [error, setError] = useState("");
-
+const navigate = useNavigate()
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
@@ -45,7 +45,7 @@ const SingIn = () => {
                 .post(url, values)
                 .then(function (response) {
                   console.log(response);
-                  /*     navigate("/user"); */
+                  navigate("/user");
                 })
                 .catch(function (error) {
                   console.log(error.response.data.msg);

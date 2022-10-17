@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import FavoriteCard from "./FavoriteCard";
+import FavoriteCard from "../atoms/FavoriteCard";
 
 const FavoriteBoard = () => {
   const items = useSelector((state) => state.favorite.favorite);

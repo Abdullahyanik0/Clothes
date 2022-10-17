@@ -19,7 +19,7 @@ const Card = ({
     <>
       <div
         onClick={handleClick}
-        className="flex xxs:min-h-[390px] relative cursor-pointer hover:scale-105 drop-shadow- mt-12  flex-col w-64 max-w-60  xxs:w-full  bg-white hover:text-gray-700 shadow-2xl shadow-gray-700"
+        className="flex text-black xxs:min-h-[390px] relative cursor-pointer hover:scale-105 drop-shadow- mt-12  flex-col w-64 max-w-60  xxs:w-full  bg-white hover:text-gray-700 shadow-2xl shadow-gray-700"
       >
         <div>
           <img className="w-full" src={imgUrl} alt="" />

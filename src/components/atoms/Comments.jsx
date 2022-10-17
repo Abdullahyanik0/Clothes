@@ -3,29 +3,12 @@ import { nanoid } from "@reduxjs/toolkit";
 const Comments = () => {
   const comment = [
     {
-      user: "Jese Leos",
-      title: "Love the color , love",
-      info: "Love the color , love the style, usually my size is S when I ski, but I choose M for snow boarding. It’s cool and I love it and it could be fit when I need some layers in it.",
-      imgUrl: "https://mui.com/static/images/avatar/1.jpg",
-    },
-    {
-      user: "John Doe",
+      user: "Michael Phileps",
       title: " My new favorite",
       info: " The pink color looks amazing! Even though it’s an anorak, it’s so easy to layer and throw on. Perfect with Kimmy Bib pant. ",
       imgUrl: "https://mui.com/static/images/avatar/2.jpg",
     },
-    {
-      user: "Michael Phileps",
-      title: "LOVE IT",
-      info: " This is a great jacket. Super light weight but technical enough to keep you warm. Easy to take on an off. I'm usually a UK8-10 / 36 and I went for a M for a larger fit. The arms are quite long but these are adjustable with the velcro tabs.The pockets and vents are perfectly placed too. And I love the colour. too. ",
-      imgUrl: "https://mui.com/static/images/avatar/3.jpg",
-    },
-    {
-      user: "Arnold Lee",
-      title: "Great",
-      info: " Love it. The style is great. I have the bright colour female one. I normally range between medium and large but the medium fits me well in this. 150lbs at 5’3. Kept me dry and warm on the mountains here in BC. ",
-      imgUrl: "https://mui.com/static/images/avatar/4.jpg",
-    },
+   
   ];
   const color = localStorage.getItem("colors");
   return (
@@ -37,12 +20,12 @@ const Comments = () => {
             <div className="space-y-1 font-medium dark:text-white">
               <p>
                 {coms.user}
-                <time
+                <timeF
                   dateTime="2014-08-16 19:00"
                   className="block text-sm text-gray-500 "
                 >
                   Joined on August 2014
-                </time>
+                </timeF>
               </p>
             </div>
           </div>

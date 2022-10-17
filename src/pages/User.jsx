@@ -6,7 +6,7 @@ import { AiOutlineLock } from "react-icons/ai";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import HeroSlider from "components/molecules/HeroSlider";
@@ -17,21 +17,24 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
 import SellIcon from "@mui/icons-material/Sell";
+import toast, { Toaster } from "react-hot-toast";
 
 const User = () => {
   const [error, setError] = useState("");
-
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
       .required("No password provided.")
       .min(6, "Password is too short - should be 6 chars minimum.")
-      .max(10, "Password is too long - should be 10 chars maximum.")
-      
+      .max(10, "Password is too long - should be 10 chars maximum."),
   });
 
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/login";
   const navigate = useNavigate();
+  const location = useLocation();
+  const [locationname, setLocationName] = useState(
+    location?.state?.name?.replace("/", "")
+  );
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
 
@@ -41,6 +44,17 @@ const User = () => {
   const handleRemove = () => {
     localStorage.removeItem("token");
     navigate("/user");
+  };
+  const notify = () => toast("Being directed");
+  const userControl = () => {
+    notify();
+    setTimeout(() => {
+      if (locationname) {
+        navigate(-1);
+      } else {
+        navigate("/");
+      }
+    }, 2000);
   };
 
   return token ? (
@@ -60,7 +74,8 @@ const User = () => {
 
           <ul className="font-semibold border-2 rounded-lg shadow-xl  pb-4 px-4 mt-6">
             <li className={textStyle}>
-              <AddShoppingCartIcon /> My previous orders
+              <AddShoppingCartIcon />
+              <Link to="/order"> My previous orders</Link>
             </li>
             <li className={textStyle}>
               <InfoIcon />
@@ -78,11 +93,11 @@ const User = () => {
           <ul className="font-semibold border-2 rounded-lg shadow-xl px-4 pb-4 mt-4 ">
             <li className={textStyle}>
               <FavoriteIcon />
-              Favorites
+              <Link to="/favorite"> Favorites</Link>
             </li>
             <li className={textStyle}>
               <DeleteIcon />
-              Basket
+              <Link to="/basket"> Basket</Link>
             </li>
             <li className={textStyle}>
               <SellIcon />
@@ -114,6 +129,10 @@ const User = () => {
     <LoginLayout>
       <div className="flex justify-center mb-[70px]">
         <div className="flex flex-col justify-center w-3/12 xxs:w-9/12 items-center">
+          <div>
+            {locationname ? <p>{locationname} please login to buy</p> : ""}{" "}
+          </div>
+
           <div className="flex justify-between w-full text-3xl my-8">
             <h1 className="">Sign in</h1>
             <h1 className="">
@@ -132,7 +151,6 @@ const User = () => {
                 .post(url, values)
                 .then(function (response) {
                   localStorage.setItem("token", response.data.token);
-                  navigate("/");
                 })
                 .catch(function (error) {
                   setError(error.response.data.msg);
@@ -172,6 +190,7 @@ const User = () => {
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
                   type="submit"
                   disabled={!(dirty && isValid)}
+                  onClick={userControl}
                 >
                   Sing In
                 </button>
@@ -186,6 +205,19 @@ const User = () => {
           </Formik>
         </div>
       </div>
+      <Toaster
+        position="center"
+        reverseOrder={false}
+        containerClassName="w-96"
+        toastOptions={{
+          className: "",
+          duration: 3000,
+          style: {
+            background: "#16C60C",
+            color: "#fff",
+          },
+        }}
+      />
     </LoginLayout>
   );
 };

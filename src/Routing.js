@@ -9,6 +9,8 @@ import Element from "Element";
 import PageNotFound from "components/atoms/PageNotFound";
 import SingIn from "pages/SingIn";
 import Favorite from "pages/Favorite";
+import Order from "pages/Order";
+import SearchPage from "pages/SearchPage";
 
 const Routing = () => {
   const items = [
@@ -51,6 +53,16 @@ const Routing = () => {
     {
       path: "favorite",
       element: <Favorite />,
+      isAuthProtected: false,
+    },
+    {
+      path: "order",
+      element: <Order />,
+      isAuthProtected: false,
+    },
+    {
+      path: "search",
+      element: <SearchPage />,
       isAuthProtected: false,
     },
     { path: "*", element: <PageNotFound /> },

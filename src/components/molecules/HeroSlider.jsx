@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper";
-import Card from "./Card";
+import Card from "../atoms/Card";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../atoms/Loading";

@@ -7,11 +7,13 @@ import Loading from "components/atoms/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "redux/CardSlice";
 import Size from "../components/atoms/Size";
+import Rating from "@mui/material/Rating";
 
 import axios from "axios";
 import { addFavorite, removeFavorite } from "redux/FavoriteSlice";
 import toast, { Toaster } from "react-hot-toast";
 import CommentsForm from "components/molecules/CommentsForm";
+import Comments from "components/atoms/Comments";
 
 const DetailPage = () => {
   const [data, setData] = useState([]);
@@ -71,7 +73,7 @@ const DetailPage = () => {
       {error ? error : ""}
       <div className="flex justify-center xxs:flex-col  my-12 gap-x-16">
         <div className="w-96 xxs:w-full relative">
-          <p className="font-semibold py-2 xxs:block mb-3 md:hidden  ">
+          <p className="font-semibold py-2 xxs:block  md:hidden  ">
             {data?.name}
           </p>
           <img className="w-full object-cover" src={data?.imgUrl} alt="" />
@@ -114,13 +116,58 @@ const DetailPage = () => {
       </div>
 
       <CommentsForm />
-      {data.comments?.map((com) => (
-        <div key={data?._id}>
-          {com?.comment}
+      <Comments />
+      <div className="pb-20">
+        {data.comments?.map((com) => (
+          <div key={com?._id}>
+            <div className="mb-6">
+              <div className="flex gap-x-2 ">
+                <div className="flex items-center mb-4 space-x-4">
+                  <img
+                    className="w-10 h-10 rounded-full"
+                    src="https://mui.com/static/images/avatar/1.jpg"
+                    alt=""
+                  />
+                  <div className="space-y-1 font-medium dark:text-white">
+                    <p>
+                      {com?.fullName}
+                      <time
+                        dateTime="2014-08-16 19:00"
+                        className="block text-sm text-gray-500 "
+                      >
+                        Joined on August 2014
+                      </time>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <footer className="mb-2 text-sm  text-gray-500  ">
+                {com?.star === 1 ? (
+                  <Rating name="read-only" value={1} readOnly />
+                ) : "" || com?.star === 2 ? (
+                  <Rating name="read-only" value={2} readOnly />
+                ) : "" || com?.star === 3 ? (
+                  <Rating name="read-only" value={3} readOnly />
+                ) : "" || com?.star === 4 ? (
+                  <Rating name="read-only" value={4} readOnly />
+                ) : "" || com?.star === 5 ? (
+                  <Rating name="read-only" value={5} readOnly />
+                ) : "" || com?.star > 5 ? (
+                  <Rating name="read-only" value={0} readOnly />
+                ) : (
+                  ""
+                )}
+                <p>
+                  Reviewed in the United Kingdom on{" "}
+                  <time dateTime="2017-03-03 19:00">March 3, 2017</time>
+                </p>
+              </footer>
 
-          {com?.star}
-        </div>
-      ))}
+              <p className="mb-1 text-md   "> {com?.comment}</p>
+            </div>
+          </div>
+        ))}
+      </div>
 
       <Toaster
         position="bottom-right "
