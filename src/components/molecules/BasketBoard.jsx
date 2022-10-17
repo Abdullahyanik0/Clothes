@@ -10,16 +10,16 @@ const BasketBoard = () => {
   const items = useSelector((state) => state.card.items);
 
   const total = items?.map((it) => it.price * it.quantity);
+  
   useEffect(() => {
     const CountTotal = () => {
       const totaled = items.reduce(function (res, item) {
         return res + item.price * item.quantity;
       }, 0);
       setTotals(totaled.toFixed(2));
-   
     };
     CountTotal();
-  }, [total]);
+  }, [total,items]);
 
   return items.length > 0 ? (
     <div className="flex  justify-center ">
