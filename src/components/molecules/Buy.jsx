@@ -51,11 +51,7 @@ const Buy = () => {
           method: "post",
           url: url,
           data: {
-            orders: [
-              {
-                prodId: basketitem,
-              },
-            ],
+            orders: basketitem,
           },
           headers: { token },
         })

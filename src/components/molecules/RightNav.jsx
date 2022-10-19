@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { nanoid } from "@reduxjs/toolkit";
 
-import Search from "components/atoms/Search";
 
 const Ul = styled.ul`
   list-style: none;

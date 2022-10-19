@@ -8,16 +8,6 @@ import { useEffect } from "react";
 const Order = () => {
   const [order, setOrder] = useState([]);
 
-  const order3 = order.map((asd) => asd.orders.map((asdd) => asdd.prodId));
-
-  const order4 = order3.map((qwe) => qwe[0][0]);
-  /*   console.log(order4); */
-  /* console.log(
-    order?.map((oitem) =>
-      oitem.orders.map((ooitem) => ooitem.prodId.map((oooitem) => oooitem))
-    )
-  ); */
-
   const url = "https://ecommerceappexpress.herokuapp.com/api/order";
   const token = localStorage.getItem("token");
   const getOrder = async () => {
@@ -25,29 +15,33 @@ const Order = () => {
       setOrder(response?.data?.orders);
     });
   };
-
+  console.log(order);
   useEffect(() => {
     getOrder();
   }, []);
 
   return (
     <Layout>
-      <div className="h-screen  ">
+      <div>
         <h1 className="text-center text-2xl font-semibold my-4">Last Orders</h1>
-        {order4.map((or) => (
-          <Card
-            key={or?._id}
-            price={or?.price}
-            categories={or?.categories}
-            selected={or?.selected}
-            imgUrl={or?.imgUrl}
-            name={or?.name}
-            title={or?.title}
-            subtitle={or?.subtitle}
-            quantity={or?.quantity}
-            id={or?._id}
-          />
-        ))}
+        <div className="grid grid-cols-4 gap-12 text-black xxs:grid-cols-2 xxs:gap-y-4 mb-20">
+          {order.map((or) =>
+            or.orders.map((orr) => (
+              <Card
+                key={orr?._id}
+                price={orr?.price}
+                categories={orr?.categories}
+                selected={orr?.selected}
+                imgUrl={orr?.imgUrl}
+                name={orr?.name}
+                title={orr?.title}
+                subtitle={orr?.subtitle}
+                quantity={orr?.quantity}
+                id={orr?._id}
+              />
+            ))
+          )}
+        </div>
       </div>
     </Layout>
   );
