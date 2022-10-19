@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "redux/CardSlice";
 import Size from "../components/atoms/Size";
 import Rating from "@mui/material/Rating";
-
 import axios from "axios";
 import { addFavorite, removeFavorite } from "redux/FavoriteSlice";
 import toast, { Toaster } from "react-hot-toast";
@@ -31,7 +30,6 @@ const DetailPage = () => {
 
   useEffect(() => {
     const url = `https://ecommerceappexpress.herokuapp.com/api/product/${detail?.id}`;
-
 
     const fetchData = async () => {
       setLoading(true);
@@ -142,28 +140,20 @@ const DetailPage = () => {
                 </div>
               </div>
               <footer className="mb-2 text-sm  text-gray-500  ">
-                {com?.star === 1 ? (
-                  <Rating name="read-only" value={1} readOnly />
-                ) : "" || com?.star === 2 ? (
-                  <Rating name="read-only" value={2} readOnly />
-                ) : "" || com?.star === 3 ? (
-                  <Rating name="read-only" value={3} readOnly />
-                ) : "" || com?.star === 4 ? (
-                  <Rating name="read-only" value={4} readOnly />
-                ) : "" || com?.star === 5 ? (
-                  <Rating name="read-only" value={5} readOnly />
-                ) : "" || com?.star > 5 ? (
-                  <Rating name="read-only" value={0} readOnly />
-                ) : (
-                  ""
-                )}
+                <Rating
+                  name="read-only"
+                  size="small"
+                  value={!com?.star ? 1 : com?.star}
+                  readOnly
+                />
+
                 <p>
                   Reviewed in the United Kingdom on{" "}
                   <time dateTime="2017-03-03 19:00">March 3, 2017</time>
                 </p>
               </footer>
 
-              <p className="mb-1 text-md   "> {com?.comment}</p>
+              <p className="mb-1 text-md xxs:text-sm   "> {com?.comment}</p>
             </div>
           </div>
         ))}

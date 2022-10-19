@@ -9,7 +9,6 @@ import Checkbox from "@mui/material/Checkbox";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
-import HeroSlider from "components/molecules/HeroSlider";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BookIcon from "@mui/icons-material/Book";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -32,9 +31,7 @@ const User = () => {
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/login";
   const navigate = useNavigate();
   const location = useLocation();
-  const [locationname, setLocationName] = useState(
-    location?.state?.name?.replace("/", "")
-  );
+  const [locationname] = useState(location?.state?.name?.replace("/", ""));
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
 
@@ -114,7 +111,6 @@ const User = () => {
             </button>
           </div>
         </div>
-        
       </div>
     </LoginLayout>
   ) : (

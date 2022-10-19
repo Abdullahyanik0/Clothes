@@ -3,6 +3,7 @@ import axios from "axios";
 
 const useFetch = (url) => {
   const [data, setData] = useState([]);
+  /*   const [isLoading, setIsLoading] = useState(false); */
   const shuffle = (array) => {
     let currentIndex = array.length,
       randomIndex;
@@ -27,8 +28,9 @@ const useFetch = (url) => {
 
   useEffect(() => {
     axios.get(url).then(function (response) {
-      // handle success
+      /*   setIsLoading(true); */
       setData(response.data.result.data);
+      /*   setIsLoading(false); */
     });
   }, [url]);
 

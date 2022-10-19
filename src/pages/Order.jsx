@@ -10,6 +10,7 @@ const Order = () => {
 
   const url = "https://ecommerceappexpress.herokuapp.com/api/order";
   const token = localStorage.getItem("token");
+
   const getOrder = async () => {
     await axios.get(url, { headers: { token } }).then((response) => {
       setOrder(response?.data?.orders);
@@ -17,6 +18,7 @@ const Order = () => {
   };
   console.log(order);
   useEffect(() => {
+    /*eslint-disable */
     getOrder();
   }, []);
 

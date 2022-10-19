@@ -4,22 +4,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper";
 import Card from "../atoms/Card";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Loading from "../atoms/Loading";
 import useFetch from "hooks/useFetch";
 
 const HeroSlider = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const url = "https://ecommerceappexpress.herokuapp.com/api/product";
   const [data] = useFetch(url);
 
-  return isLoading ? (
-    <Loading />
-  ) : (
+  return (
     <div className="  text-black">
-      <div>{error ? error : ""}</div>
       <Swiper
         breakpoints={{
           500: {

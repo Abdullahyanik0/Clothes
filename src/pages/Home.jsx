@@ -1,18 +1,13 @@
 import React from "react";
 import Layout from "Layout/Layout";
 import Slider from "components/molecules/Slider";
-import { useState } from "react";
-import Loading from "components/atoms/Loading";
+
 import HeroSlider from "components/molecules/HeroSlider";
 import Box from "components/molecules/Box";
 import Footer from "components/organizm/Footer";
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  return isLoading ? (
-    <Loading />
-  ) : (
+  return (
     <Layout>
       <Slider />
       <div className="text-center ">
@@ -84,7 +79,7 @@ const Home = () => {
           subtitle="Ultra-soft bluesign® and organic cotton materials keep you feeling good no matter what the day throws at you."
         />
       </div>
-      <Footer/>
+      <Footer />
     </Layout>
   );
 };
