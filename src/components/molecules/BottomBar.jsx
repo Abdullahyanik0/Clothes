@@ -45,7 +45,7 @@ export default function SimpleBottomNavigation() {
               <Link to="/basket">
                 <div>
                   {card.length ? (
-                    <div className="rounded-full flex justify-center items-center w-4 h-4 absolute top-0 right-8 text-white bg-red-600">
+                    <div className="rounded-full flex justify-center items-center w-4 h-4 absolute top-0 right-6 text-white bg-red-600">
                       <p>{card.length}</p>
                     </div>
                   ) : (
@@ -64,7 +64,7 @@ export default function SimpleBottomNavigation() {
               <Link to="/favorite">
                 <div>
                   {favorite.length ? (
-                    <div className="rounded-full flex justify-center items-center w-4 h-4 absolute top-0 right-8 text-white bg-red-600">
+                    <div className="rounded-full flex justify-center items-center w-4 h-4 absolute top-0 right-6 text-white bg-red-600">
                       <p>{favorite.length}</p>
                     </div>
                   ) : (

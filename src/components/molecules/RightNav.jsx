@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { nanoid } from "@reduxjs/toolkit";
 
-
 const Ul = styled.ul`
   list-style: none;
   display: flex;
@@ -34,7 +33,7 @@ const Ul = styled.ul`
 
 const RightNav = ({ open }) => {
   const navbar = [
-    { id: nanoid(), name: "Snowboarding", link: "/categorypage/women" },
+    { id: nanoid(), name: "All Products", link: "/allproducts" },
     { id: nanoid(), name: "Women", link: "/categorypage/women" },
     { id: nanoid(), name: "Men", link: "/categorypage/man" },
     { id: nanoid(), name: "Kids ", link: "/categorypage/women" },
@@ -45,7 +44,6 @@ const RightNav = ({ open }) => {
 
   return (
     <Ul open={open} className="z-10 ml-40  ">
-      
       {navbar.map((nav) => (
         <NavLink key={nav.id} to={nav.link}>
           <li className=" hover:underline-offset-4 hover:underline ease-in duration-200 rounded-lg ">

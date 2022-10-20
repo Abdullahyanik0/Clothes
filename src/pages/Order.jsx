@@ -18,7 +18,7 @@ const Order = () => {
   };
   console.log(order);
   useEffect(() => {
-    /*eslint-disable */
+
     getOrder();
   }, []);
 

@@ -10,7 +10,7 @@ const Element = ({ item }) => {
     if (!user && isAuthProtected) return <Navigate to="/user" />;
 
     return <>{element}</>;
-    /*eslint-disable */
+
   }, [element]);
 
   return <Render />;

@@ -11,6 +11,7 @@ import SingIn from "pages/SingIn";
 import Favorite from "pages/Favorite";
 import Order from "pages/Order";
 import SearchPage from "pages/SearchPage";
+import AllProducts from "pages/AllProducts";
 
 const Routing = () => {
   const items = [
@@ -63,6 +64,11 @@ const Routing = () => {
     {
       path: "search",
       element: <SearchPage />,
+      isAuthProtected: false,
+    },
+    {
+      path: "allproducts",
+      element: <AllProducts />,
       isAuthProtected: false,
     },
     { path: "*", element: <PageNotFound /> },

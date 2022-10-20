@@ -29,7 +29,7 @@ const Search = () => {
 
   useEffect(() => {
     fetchData();
-    /*eslint-disable */
+
   }, [search]); 
 
   const handleChange = (e) => {

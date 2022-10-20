@@ -30,7 +30,6 @@ const CategoryPage = () => {
     setLoading(true);
     fetchData();
     setLoading(false);
-    /*eslint-disable */
   }, [categories]);
   return isLoading ? (
     <Layout>

@@ -11,7 +11,7 @@ export default function useDebounce(value, delay) {
     return () => {
       clearTimeout(handler);
     };
-    /*eslint-disable */
+
   }, [value]);
 
   return debouncedValue;
