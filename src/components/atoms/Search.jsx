@@ -29,8 +29,7 @@ const Search = () => {
 
   useEffect(() => {
     fetchData();
-
-  }, [search]); 
+  }, [search]);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -40,7 +39,7 @@ const Search = () => {
   }, []);
 
   return (
-    <div className="w-96 mr-4 border-spacing-4 relative">
+    <div className="w-96 mr-4  border-spacing-4 relative">
       <div className="relative">
         <input
           className="border-[1px] w-full border-[#bbb] rounded-xs p-2 !text-black  !font-medium text-base"
@@ -53,15 +52,21 @@ const Search = () => {
       </div>
 
       {search && (
-        <div className="absolute w-full mt-[2px] top-10  z-20 left-0  rounded-sm   bg-white  text-black">
-          {data?.map((dat) => (
-            <SearchCard
-              key={dat?._id}
-              id={dat?._id}
-              name={dat?.name}
-              imgUrl={dat?.imgUrl}
-            />
-          ))}
+        <div className="absolute box-border w-full mt-[2px] mb-24 top-10  z-20 left-0  rounded-sm   bg-white  text-black">
+          {data.length === 0 ? (
+            <p className="p-2">No results found</p>
+          ) : (
+            data
+              ?.slice(0, 6)
+              .map((dat) => (
+                <SearchCard
+                  key={dat?._id}
+                  id={dat?._id}
+                  name={dat?.name}
+                  imgUrl={dat?.imgUrl}
+                />
+              ))
+          )}
         </div>
       )}
     </div>

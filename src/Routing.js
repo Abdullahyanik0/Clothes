@@ -12,6 +12,7 @@ import Favorite from "pages/Favorite";
 import Order from "pages/Order";
 import SearchPage from "pages/SearchPage";
 import AllProducts from "pages/AllProducts";
+import ScrollToTop from "components/atoms/ScrollToTop ";
 
 const Routing = () => {
   const items = [
@@ -76,6 +77,7 @@ const Routing = () => {
 
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <Routes>
         {items?.map((item) => (
           <Route

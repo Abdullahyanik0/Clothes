@@ -38,7 +38,8 @@ const AllProducts = () => {
 
   return (
     <Layout>
-      <div className="mt-12 flex justify-end">
+      <h1 className="text-center font-semibold text-2xl mt-6">All Products</h1>
+      <div className="mt-6 flex justify-end">
         <FormControl className="w-20">
           <InputLabel id="demo-simple-select-label">Limit</InputLabel>
           <Select

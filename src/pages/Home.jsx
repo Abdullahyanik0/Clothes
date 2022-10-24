@@ -4,7 +4,6 @@ import Slider from "components/molecules/Slider";
 
 import HeroSlider from "components/molecules/HeroSlider";
 import Box from "components/molecules/Box";
-import Footer from "components/organizm/Footer";
 
 const Home = () => {
   return (
@@ -62,7 +61,7 @@ const Home = () => {
           and sport.
         </p>
       </div>
-      <div className="flex gap-x-6 xxs:block mt-24 xxs:mt-12 ">
+      <div className="flex pb-16 gap-x-6 xxs:block mt-24 xxs:mt-12 ">
         <Box
           imgUrl="https://www.burton.com/dw/image/v2/AADF_PRD/on/demandware.static/-/Library-Sites-shared-content/default/dw857d46f2/W22/W22-People-Planet-Sport/People-3Up-Square-BG.jpg"
           title="Get 'em Ready to Rip"
@@ -79,7 +78,6 @@ const Home = () => {
           subtitle="Ultra-soft bluesign® and organic cotton materials keep you feeling good no matter what the day throws at you."
         />
       </div>
-      <Footer />
     </Layout>
   );
 };

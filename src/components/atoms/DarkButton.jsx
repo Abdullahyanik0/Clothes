@@ -55,7 +55,7 @@ export default function CustomizedSwitches({ onClick, onChange }) {
   return (
     <FormGroup>
       <FormControlLabel
-        control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+        control={<MaterialUISwitch sx={{ m: 1 }} />}
         onClick={onClick}
         onChange={onChange}
       />

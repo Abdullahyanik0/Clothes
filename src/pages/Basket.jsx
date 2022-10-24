@@ -31,10 +31,6 @@ const Basket = () => {
         <h1 className="font-semibold text-3xl">Recently Viewed</h1>
       </div>
       <HeroSlider />
-      <div className="text-center my-4">
-        <h1 className="font-semibold text-3xl">Best Sellers</h1>
-      </div>
-      <HeroSlider />
     </Layout>
   );
 };

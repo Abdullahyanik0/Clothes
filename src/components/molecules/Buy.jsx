@@ -60,13 +60,13 @@ const Buy = () => {
             notify();
             setTimeout(() => {
               dispatch(removeState());
-            }, 2000);
+            }, 1000);
           })
           .catch((error) => {
             console.log(error);
             notify2();
           });
-      }, 1000);
+      }, 100);
     }
   };
 

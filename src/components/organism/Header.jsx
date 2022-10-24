@@ -20,7 +20,7 @@ const Header = () => {
     setChecked(event.target.checked);
   };
   return (
-    <div className={`sticky top-0 z-10 ${color} `}>
+    <div className={`sticky top-0 z-10 bg-white ${color} `}>
       <NavHeader />
       <div className="flex justify-center xxs:p-2 border-y-[1px] h-[91px] items-center p-11  font-bold text-[13px] ">
         <div className="w-full flex justify-between items-center ">
@@ -35,7 +35,7 @@ const Header = () => {
               onChange={() => dispatch(changeHeaderColor())}
               onClick={handleChange}
             />
-          </div>  
+          </div>
           <div className="xxm:hidden">
             <Search />
           </div>

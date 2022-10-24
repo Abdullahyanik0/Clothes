@@ -6,7 +6,7 @@ import { Navigation, Autoplay } from "swiper";
 
 const Slider = () => {
   return (
-    <div className=" mb-12 xxs:mt-12  ">
+    <div className="   mb-12 xxs:mt-12  ">
       <Swiper
         className="max-h-[655px] "
         spaceBetween={50}

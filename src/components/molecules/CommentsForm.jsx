@@ -6,8 +6,9 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import Rating from "@mui/material/Rating";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 
-const CommentsForm = () => {
+const CommentsForm = ({ fetchData }) => {
   const params = useParams();
   const notifyCard = () => toast("Added to Comments.");
 
@@ -16,7 +17,7 @@ const CommentsForm = () => {
   const url = `https://ecommerceappexpress.herokuapp.com/api/product/${detail?.id}`;
   const token = localStorage.getItem("token");
 
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(0);
   const [comment, setComments] = useState("");
 
   const SignupSchema = Yup.object().shape({
@@ -26,7 +27,7 @@ const CommentsForm = () => {
   const handleTextChange = (e) => {
     setComments(e.target.value);
   };
-  console.log(comment);
+
   return (
     <div className="py-2">
       <h1 className="mb-4">Comment</h1>
@@ -45,9 +46,7 @@ const CommentsForm = () => {
                 .then(function (response) {
                   console.log(response);
                   notifyCard();
-                  setTimeout(() => {
-                    window.location.reload(1);
-                  }, 1000);
+                  fetchData();
                 })
                 .catch(function (error) {
                   console.log(error);
@@ -62,15 +61,23 @@ const CommentsForm = () => {
           <Form className="flex gap-x-2  xxs:flex-col text-black">
             <div className="flex xxs:mb-4">
               <div className="flex items-center ">
-                <input
+                <TextareaAutosize
+                  minRows={2}
+                  style={{ width: 350 }}
+                  placeholder="Comment"
                   type="text"
                   name="comment"
                   onChange={handleTextChange}
                   value={comment}
-                  className="h-full border-[1px] xxs:py-2 border-gray-400 rounded-md text-black  placeholder:text-gray-500"
+                  className="h-full p-2 border-[1px] xxs:py-2 border-gray-400 rounded-md text-black  placeholder:text-gray-500"
                 />
               </div>
-              <div className="flex items-center px-3">
+            </div>
+            {errors.comment && touched.comment ? (
+              <div className="text-red-600 mb-2">{errors.comment}</div>
+            ) : null}
+            <div className="flex justify-between items-center ">
+              <div className="flex items-center px-8">
                 <Rating
                   name="star"
                   value={value}
@@ -80,17 +87,14 @@ const CommentsForm = () => {
                   }}
                 />
               </div>
+              <button
+                className="bg-[#3d7c7d] xxs:w-1/2 h-10  px-6 xxs:px-2 rounded hover:bg-opacity-90  ease-in duration-200 p-1 text-white text-xl font-semibold"
+                type="submit"
+                /* disabled={!(dirty && isValid)} */
+              >
+                Submit
+              </button>
             </div>
-            {errors.comment && touched.comment ? (
-              <div className="text-red-600 mb-2">{errors.comment}</div>
-            ) : null}
-            <button
-              className="bg-[#3d7c7d] xxs:w-1/2  px-6 xxs:px-2 rounded hover:bg-opacity-90  ease-in duration-200 p-1 text-white text-xl font-semibold"
-              type="submit"
-              /* disabled={!(dirty && isValid)} */
-            >
-              Submit
-            </button>
           </Form>
         )}
       </Formik>

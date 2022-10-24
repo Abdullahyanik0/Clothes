@@ -36,10 +36,10 @@ const RightNav = ({ open }) => {
     { id: nanoid(), name: "All Products", link: "/allproducts" },
     { id: nanoid(), name: "Women", link: "/categorypage/women" },
     { id: nanoid(), name: "Men", link: "/categorypage/man" },
-    { id: nanoid(), name: "Kids ", link: "/categorypage/women" },
+    { id: nanoid(), name: "Kids ", link: "/allproducts" },
     { id: nanoid(), name: "Accessories & Bags ", link: "/categorypage/bag" },
-    { id: nanoid(), name: "Sale ", link: "/categorypage/women" },
-    { id: nanoid(), name: "MINE77", link: "/categorypage/women" },
+    { id: nanoid(), name: "Sale ", link: "/allproducts" },
+    { id: nanoid(), name: "MINE77", link: "/allproducts" },
   ];
 
   return (

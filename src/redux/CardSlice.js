@@ -4,7 +4,7 @@ export const CardSlice = createSlice({
   name: "card",
   initialState: {
     items: [],
-    headerColor: localStorage.getItem("color"),
+    headerColor: "!bg-white",
   },
   reducers: {
     addCard: (state, { payload: { data } }) => {

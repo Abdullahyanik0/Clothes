@@ -22,10 +22,7 @@ const User = () => {
   const [error, setError] = useState("");
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string()
-      .required("No password provided.")
-      .min(6, "Password is too short - should be 6 chars minimum.")
-      .max(10, "Password is too long - should be 10 chars maximum."),
+    password: Yup.string().required("No password provided."),
   });
 
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/login";
@@ -43,16 +40,6 @@ const User = () => {
     navigate("/user");
   };
   const notify = () => toast("Being directed");
-  const userControl = () => {
-    notify();
-    setTimeout(() => {
-      if (locationname) {
-        navigate(-1);
-      } else {
-        navigate("/");
-      }
-    }, 2000);
-  };
 
   return token ? (
     <LoginLayout>
@@ -139,6 +126,14 @@ const User = () => {
                 .post(url, values)
                 .then(function (response) {
                   localStorage.setItem("token", response.data.token);
+                  notify();
+                  setTimeout(() => {
+                    if (locationname) {
+                      navigate(-1);
+                    } else {
+                      navigate("/");
+                    }
+                  }, 2000);
                 })
                 .catch(function (error) {
                   setError(error.response.data.msg);
@@ -178,7 +173,6 @@ const User = () => {
                   className="bg-[#3d7c7d] rounded hover:bg-opacity-90 my-8 ease-in duration-200 h-14 text-white text-xl font-semibold"
                   type="submit"
                   disabled={!(dirty && isValid)}
-                  onClick={userControl}
                 >
                   Sing In
                 </button>

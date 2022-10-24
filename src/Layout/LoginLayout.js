@@ -1,5 +1,5 @@
 import React from "react";
-import LoginHeader from "components/organizm/LoginHeader";
+import LoginHeader from "components/organism/LoginHeader";
 import BottomBar from "../components/molecules/BottomBar";
 import { useSelector } from "react-redux";
 

@@ -12,7 +12,6 @@ import axios from "axios";
 import { addFavorite, removeFavorite } from "redux/FavoriteSlice";
 import toast, { Toaster } from "react-hot-toast";
 import CommentsForm from "components/molecules/CommentsForm";
-import Comments from "components/atoms/Comments";
 
 const DetailPage = () => {
   const [data, setData] = useState([]);
@@ -28,26 +27,26 @@ const DetailPage = () => {
   const notifyRemoveFavorite = () => toast("Remove to Favorite.");
   const favorite = useSelector((state) => state.favorite.favorite);
 
+  const url = `https://ecommerceappexpress.herokuapp.com/api/product/${detail?.id}`;
+
+  const fetchData = async () => {
+    await axios
+
+      .get(url)
+      .then(function (response) {
+        setLoading(true);
+        setData(response.data.product.shift());
+
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setLoading(false);
+        setError(error.response.data);
+      });
+  };
+
   useEffect(() => {
-    const url = `https://ecommerceappexpress.herokuapp.com/api/product/${detail?.id}`;
-
-    const fetchData = async () => {
-      setLoading(true);
-      await axios
-
-        .get(url)
-        .then(function (response) {
-          setData(response.data.product.shift());
-
-          setLoading(false);
-        })
-        .catch(function (error) {
-          console.log(error);
-          setLoading(false);
-          setError(error.response.data);
-        });
-    };
-
     fetchData();
   }, [detail]);
 
@@ -113,9 +112,9 @@ const DetailPage = () => {
         </div>
       </div>
 
-      <CommentsForm />
-      <Comments />
-      <div className="pb-20">
+      <CommentsForm fetchData={fetchData} />
+
+      <div className="py-20">
         {data.comments?.map((com) => (
           <div key={com?._id}>
             <div className="mb-6">

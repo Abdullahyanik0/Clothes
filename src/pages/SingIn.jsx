@@ -11,13 +11,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 const SingIn = () => {
   const [error, setError] = useState("");
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string()
-      .required("No password provided.")
-      .min(6, "Password is too short - should be 6 chars minimum.")
-      .max(10, "Password is too long - should be 10 chars maximum."),
+    password: Yup.string().required("No password provided."),
     fullName: Yup.string().required("Required."),
   });
   const url = "https://ecommerceappexpress.herokuapp.com/api/auth/register";
