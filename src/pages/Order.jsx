@@ -1,5 +1,4 @@
 import axios from "axios";
-import Card from "components/atoms/Card";
 import Layout from "Layout/Layout";
 import React from "react";
 import { useState } from "react";
@@ -7,7 +6,6 @@ import { useEffect } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 import OrderCard from "components/atoms/OrderCard";
 import { Link } from "react-router-dom";
 

@@ -12,12 +12,11 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const AllProducts = () => {
-  const [total, setTotal] = useState();
+  const [total, setTotal] = useState([]);
   const [limit, setLimit] = useState(5);
   const [skip, setSkip] = useState(0);
-
-  console.log(skip);
   const [data, setData] = useState([]);
+
   const url = `https://ecommerceappexpress.herokuapp.com/api/product?limit=${limit}&skip=${skip}`;
   const handleChange = (event) => {
     setLimit(event.target.value);
